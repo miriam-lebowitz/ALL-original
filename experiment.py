@@ -439,15 +439,15 @@ def trialgenl(triallist, listofelements):
         triallist.append([visual, sound, listofelements[3], listofelements[4]])
 def trialgenCM(tlist, clrs, mnstrs,sfxs):
     """generate det col monster trials"""
-    yellowdummy = range(6) # shuffle to pick out which monsters are yellow in the first block
-    pldummy = range(6) # shuffle to pick out which monsters are plural in the first block
+    yellowdummy = list(range(6)) # shuffle to pick out which monsters are yellow in the first block
+    pldummy = list(range(6)) # shuffle to pick out which monsters are plural in the first block
     random.shuffle(yellowdummy)
     random.shuffle(pldummy)
     for round in range(2):
         roundlist = []
-        mdummy = range(6)
+        mdummy = list(range(6))
         monsterfoil = genalt(mnstrs[0])
-        fdummy = range(6)
+        fdummy = list(range(6))
         random.shuffle(fdummy)
         for i in range(6): # through all monsters
             if round == 0: # which ones are sg/pl in the first round
@@ -514,11 +514,11 @@ def trialgenNP(tlist, clrs, nmnstrs, smnstrs, nptrns, sptrns, sfx):
         roundlist = []
         nicefoil = genalt(nmnstrs)
         scaryfoil = genalt(smnstrs)
-        pldummy = range(6)
+        pldummy = list(range(6))
         random.shuffle(pldummy)
-        colourdummy = range(6)
+        colourdummy = list(range(6))
         random.shuffle(colourdummy)
-        fdummy = range(6)
+        fdummy = list(range(6))
         random.shuffle(fdummy)
         for i in range(6): # six trials per round
             if i < 3:
@@ -622,9 +622,9 @@ def trialgenfull(clrs, nmnstrs, smnstrs, nptrns, sptrns, vrbs, plnts, sfx, expos
         sound = "sounds/combined/11111111" + str(audsem) + str(nr) + str(cs) + str(audsem) + str(nr) + str(audmon) + str(audsem) + str(nr) + str(audpat)+ '1' + str(audverb) + str(audsem) + str(nr) + str(audlan) + ".wav"
         unroundlist.append([pic, sound, cp, mgen, vissem, vispat, vgen, lgen, nr, vismon, visverb, vislan])
     tnr = 0
-    planetlist = range(3)
-    verblist = range(3)
-    fdummy = range(6)
+    planetlist = list(range(3))
+    verblist = list(range(3))
+    fdummy = list(range(6))
     for r in range(6):
         passiveblock = []
         for i in range(6):
@@ -699,7 +699,7 @@ def FCimprob(tlist, clrs, nmnstrs, smnstrs, nptrns,sptrns, sfxs):
     random.shuffle(smnstrs)
     random.shuffle(nptrns)
     random.shuffle(sptrns)
-    colourlist = range(2)
+    colourlist = list(range(2))
     random.shuffle(colourlist)
     nrdummy = ['1','2']
     random.shuffle(nrdummy)
@@ -745,7 +745,7 @@ def FCprob(tlist, clrs, nmnstrs, smnstrs, nptrns,sptrns, sfxs):
     random.shuffle(smnstrs)
     random.shuffle(nptrns)
     random.shuffle(sptrns)
-    colourlist = range(2)
+    colourlist = list(range(2))
     random.shuffle(colourlist)
     nrdummy = ['1','2']
     random.shuffle(nrdummy)
@@ -1258,7 +1258,7 @@ if setup == True:
 
     vocabtesttrials = []
     # pick half plural for the monster vocab trials
-    mpldummy = range(6)
+    mpldummy = list(range(6))
     random.shuffle(mpldummy)
     nmvocab = []
     smvocab = []
@@ -1344,7 +1344,7 @@ if show == True:
 if subjectnr > 1:
     for k in range(len(showtrial)):
         showtrial[k] = 1
-print showtrial
+print (showtrial)
 # Define the window that the experiment will be run in. In a lot of psychopy functions you will see this window as the first argument, there we tell it to draw stuff in this window.
 win = visual.Window(fullscr = False, color = 'white', units = 'pix', size = [1200,700], allowGUI = None)
 trialnr = 1
