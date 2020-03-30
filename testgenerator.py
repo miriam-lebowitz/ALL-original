@@ -79,6 +79,7 @@ def checkpatterns(blocklst, f = 0):
                 for j in range(6):
                     unusedtriallist[j][f].append(blocklst.pop(0))
     elif len(blocklst) < 6:
+        # Updated for python 3 syntax
         print ('ik ben niet vol', len(blocklst), 'dit zou NOOIT moeten gebeuren....')
         for k in range(len(blocklst)):
             unusedtriallist[k][f].append(blocklst.pop(0))
