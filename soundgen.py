@@ -183,6 +183,7 @@ for i in range(1,7): # noun 1-6
                             #sound6(det, col, monwn, mar, ver, lan,dcmwnmvl)
                             #sound6(det, col, mon, mar, verws, lan,dcmmvwsl)
                             #sound6(det, col, mon, mar, verwn, lan,dcmmvwnl)
+# Updated for python 3 print syntax                        
 print (len(listofdurs))
 # generate a new one w/o duplicates
 listofdur = []
@@ -190,7 +191,7 @@ for i in listofdurs:
        if i not in listofdur:
           listofdur.append(i)
 
-
+# Updated for python 3 print syntax   
 print (len(listofdur))
 
 title = 'listofsounddurations.txt'
