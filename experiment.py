@@ -314,7 +314,7 @@ def twomovies(window, name1, name2, keys = 'no'):
         forcedchoiceimage(window, 0.025, frame1, frame2, keys = shwk, si = [900,675])
 def activecompblock(trials, trlnr, ittype, pl = '1'):
     random.shuffle(trials)
-    picknonmatch = range(len(trials))
+    picknonmatch = list(range(len(trials)))
     random.shuffle(picknonmatch) # random shuffle to pick which half of the trials get to be mismatch
     alts = genalt(trials)
     tcrct = 0
@@ -823,8 +823,8 @@ def FCprob(tlist, clrs, nmnstrs, smnstrs, nptrns,sptrns, sfxs):
             tlist.append([pic, sound, nr, fpic, trialtype, critword])
 def FCvl(tlist, clrs, nmnstrs, smnstrs, nptrns, sptrns, vrbs, plnts, sfx, fcvllist):
     """generates 6 fc test trials to test verb and landscape vocab"""
-    planetlist = range(3)
-    verblist = range(3)
+    planetlist = list(range(3))
+    verblist = list(range(3))
     lfoils = genalt(planetlist)
     vfoils = genalt(verblist)
     for item in fcvllist: 
@@ -1627,7 +1627,7 @@ for t in vl:
 if conditionnr == 1:
     showmessage(win, activecompmessage)
     random.shuffle(vl)
-    picknonmatch = range(len(vl))
+    picknonmatch = list(range(len(vl)))
     random.shuffle(picknonmatch) # random shuffle to pick which half of the trials get to be mismatch
     tc = 0
     for t in range(len(vl)):
@@ -1661,7 +1661,7 @@ if conditionnr == 1:
     activecompcorrect.append([tc, 'vl'])
     tc = 0
     random.shuffle(vl)
-    picknonmatch = range(len(vl))
+    picknonmatch = list(range(len(vl)))
     random.shuffle(picknonmatch) # random shuffle to pick which half of the trials get to be mismatch
     for t in range(len(vl)):
         trial = vl[t]
