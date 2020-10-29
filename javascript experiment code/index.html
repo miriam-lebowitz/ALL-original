@@ -30,6 +30,17 @@
 	<p>
 </body>
 <script>
+// Ajax call to get training list 
+$(document).ready(function() {
+	$.ajax({
+		type : "GET",
+		url : "lcnl javascript experiments/traininglist30",
+		dataType : "text",
+		success : function(data) {
+			processData(data);
+		}
+	});
+});
 	document.addEventListener("click", function() {
 		document.removeEventListener('click', arguments.callee);
 		jsPsych.init({
