@@ -1,45 +1,108 @@
-function active_comprehension_trial(image1,image2, sound){
-var active_comprehension_trial = {
-  timeline: [{
-      type: 'html-keyboard-response',
-      stimulus: '+',
-      choices: jsPsych.NO_KEYS,
-      trial_duration: 500
-    },
-    {
-      type: 'categorize-image',
-      stimulus: jsPsych.timelineVariable('img'),
-      key_answer: 71,
-      choices: [71, 72],
-      correct_text: "<p class='prompt'>Correct! </p>",
-      incorrect_text: "<p class='prompt'>Incorrect. </p>",
-      prompt: "<p>Is this correct?</p>",
-      stimulus_duration: 2500,
-      show_stim_with_feedback: true,
-      feedback_duration: 1000
 
-    },
-    {
-      type: 'image-keyboard-response',
-
-      stimulus: 'blank.PNG',
-      choices: jsPsych.NO_KEYS,
-      trial_duration: 500
-    },
-    {
-      type: 'image-keyboard-response',
-      prompt: "<p>I am text associated with an image.</p>",
-      stimulus: jsPsych.timelineVariable('img'),
-      choices: jsPsych.NO_KEYS,
-      trial_duration: 2000
-    }
-
-  ],
-  timeline_variables: [{
-      img: image1
-    }
-  ]
+// Plays audio file 
+async function playAudio(audio) {
+	audio.play()
 }
-return active_comprehension_trial
+
+// Function used to set a timer and then call the audio file player
+function audioAfterTime(audio, time) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			playAudio(audio);
+		}, time);
+	});
+}
+
+// Runs an active comprehension trial 
+function active_comprehension_trial(image1, image2, correct, sound, prompt) {
+
+	// Determines the appropriate key to set for the correct value in the user interaction
+	var key;
+	if (correct) {
+		key = 76;
+	}
+	else {
+		key = 65;
+	}
+
+	// Saves current folder in server for ease of path determination
+	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search;
+
+	// Audio instance is set 
+	var audio = new Audio(sound);
+
+	// Audio file duration is used to determine how long the images need to be shown
+	audio.addEventListener("loadeddata", function() {
+		active_comprehension_trial['timeline'][2]['stimulus_duration'] += 1000 * this.duration;
+		active_comprehension_trial['timeline'][5]['trial_duration'] += 1000 * this.duration;
+	});
+
+	// variable storing the timeline for the trial that will be output
+	var active_comprehension_trial = {
+		timeline: [{
+			// Displays fixation cross
+			type: 'html-keyboard-response',
+			stimulus: '+',
+			choices: jsPsych.NO_KEYS,
+			trial_duration: 500
+		}, {
+			// Calls sound in 1 second so that it will play during the image display
+			type: 'call-function',
+			async: false,
+			func: function() { audioAfterTime(audio, 1000) }
+		},
+		{
+			// Displays image and asks user to select y for yes or n for no based on the sound that is played
+			type: 'categorize-image',
+			stimulus: image1,
+			key_answer: key,
+			choices: [76, 65],
+			correct_text: "<img src='" + loc + "lcnl javascript experiments/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
+			incorrect_text: "<img src='" + loc + "lcnl javascript experiments/redx.png' style='margin-left: auto;margin-right: auto;'>",
+			prompt: "<p>Correct: press L			 Incorrect: press A</p>",
+			show_stim_with_feedback: true,
+			feedback_duration: 1000
+		},
+		{
+			// Blank screen to implement pause
+			type: 'image-keyboard-response',
+			stimulus: loc + '/lcnl javascript experiments/blank.png',
+			choices: jsPsych.NO_KEYS,
+			trial_duration: 500
+		}, {
+			// Calls sound in 1 second so that it will play during the image display
+			type: 'call-function',
+			async: false,
+			func: function() { audioAfterTime(audio, 1000) }
+		},
+		{
+			// Displays correct image 
+			type: 'image-keyboard-response',
+			prompt: "<p>" + prompt + "</p>",
+			stimulus: image2,
+			choices: jsPsych.NO_KEYS,
+			trial_duration: 2000
+		}
+			, {
+			// Calls sound in 1 second so that it will play during the image display
+			type: 'call-function',
+			async: false,
+			func: function() {
+				var current_node_id = jsPsych.currentTimelineNodeID();
+
+				var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "2.0";
+
+				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
+				console.log(data_from_current_node.csv())
+			}
+		}
+		],
+		timeline_variables: [{
+			img: image1
+		}
+		]
+	}
+
+	return active_comprehension_trial
 }
 
