@@ -84,14 +84,15 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 			trial_duration: 2000
 		}
 			, {
-			// Calls sound in 1 second so that it will play during the image display
+			// Retrieves and separates relevant data from the appropriate timeline node
 			type: 'call-function',
 			async: false,
 			func: function() {
 				var current_node_id = jsPsych.currentTimelineNodeID();
-
+				// Navigates from the end of the timeline to the node associated with the categorize image trial
 				var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "2.0";
-
+				// Gets data from this node and prints it to the screen
+				// TODO: this will be changed to a server ajax call later in process
 				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
 				console.log(data_from_current_node.csv())
 			}
