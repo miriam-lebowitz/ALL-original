@@ -130,7 +130,7 @@ function constructValues() {
 	detLargePlur = dets[3]
 
 	// Constructs file dictionary for small monsters
-	for (var i = 0; i < 17; i++) {
+	for (var i = 0; i < 12; i++) {
 		// Retrieves image file
 		var img = imageFileName(i)
 		// Retrieves sounds for plural and singular with selected determiner
@@ -141,7 +141,7 @@ function constructValues() {
 		small[i] = [img, { "p": plurSound, "s": singSound }, { "p": soundToPrompt[plurSound], "s": soundToPrompt[singSound] }]
 	}
 	// Constructs file dictionary for large monsters
-	for (var i = 18; i < 30; i++) {
+	for (var i = 12; i < 30; i++) {
 		// Retrieves image file
 		img = imageFileName(i)
 		// Retrieves sounds for plural and singular with selected determiner
@@ -149,7 +149,7 @@ function constructValues() {
 		plurSound = soundFileName(detLargePlur, true, i, false)
 		// Adds current monster to dictionary in the structure 
 		// [image file name, sub-dictionary storing plural sound file with key p and singular sound file with key s, sub-dictionary storing plural prompt string with key p and singular prompt string with key s]
-		big[i - 18] = [img, { "p": plurSound, "s": singSound }, { "p": soundToPrompt[plurSound], "s": soundToPrompt[singSound] }]
+		big[i - 12] = [img, { "p": plurSound, "s": singSound }, { "p": soundToPrompt[plurSound], "s": soundToPrompt[singSound] }]
 	}
 }
 // Lists of instructions for comprehension and production trials
@@ -297,8 +297,11 @@ function makeExp() {
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
+		
+		// Current row
+		curr = trialData[0];
 	
-			// Stores experiment block for this row
+		// Stores experiment block for this row
 		block = [];
 
 		// Shuffles the row itself
