@@ -81,12 +81,12 @@ function imageFileName(imageNumber) {
 
 	// Small images
 	if (imageNumber < 12) {
-		return "l" + imageNumber + 1 + ".png";
+		return "l" + (imageNumber + 1) + ".png";
 	}
 
 	// Large images
 	else {
-		return "h" + imageNumber - 18 + 1 + ".png";
+		return "h" + (imageNumber - 12 + 1) + ".png";
 	}
 }
 
@@ -104,6 +104,7 @@ function soundFileName(determiner, isSmall, monsterNumber, isSingular) {
 	}
 	else {
 		size = "big";
+		monsterNumber = monsterNumber - 12;
 	}
 	var plurality;
 
@@ -119,6 +120,10 @@ function soundFileName(determiner, isSmall, monsterNumber, isSingular) {
 	return det + size + monsterNumber + plurality + ".wav";
 }
 
+// dictionaries for big and small file names
+var big = {};
+var small = {};
+
 function constructValues() {
 
 	// Shuffles between the 4 determiners and randomly assigns them to the small and big plural and singular forms
@@ -133,6 +138,7 @@ function constructValues() {
 	for (var i = 0; i < 12; i++) {
 		// Retrieves image file
 		var img = imageFileName(i)
+
 		// Retrieves sounds for plural and singular with selected determiner
 		var singSound = soundFileName(detSmallSing, true, i, true)
 		var plurSound = soundFileName(detSmallPlur, true, i, false)
@@ -143,10 +149,12 @@ function constructValues() {
 	// Constructs file dictionary for large monsters
 	for (var i = 12; i < 30; i++) {
 		// Retrieves image file
-		img = imageFileName(i)
+		var img = imageFileName(i)
+
 		// Retrieves sounds for plural and singular with selected determiner
-		singSound = soundFileName(detLargeSing, true, i, true)
-		plurSound = soundFileName(detLargePlur, true, i, false)
+		singSound = soundFileName(detLargeSing, false, i, true)
+		plurSound = soundFileName(detLargePlur, false, i, false)
+
 		// Adds current monster to dictionary in the structure 
 		// [image file name, sub-dictionary storing plural sound file with key p and singular sound file with key s, sub-dictionary storing plural prompt string with key p and singular prompt string with key s]
 		big[i - 12] = [img, { "p": plurSound, "s": singSound }, { "p": soundToPrompt[plurSound], "s": soundToPrompt[singSound] }]
@@ -154,7 +162,7 @@ function constructValues() {
 }
 // Lists of instructions for comprehension and production trials
 // TODO: These are not currently the right file names for the sequences
-prodMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
+/*prodMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
 	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
 	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
 	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
@@ -162,6 +170,21 @@ compMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1
 	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
 	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
 	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
+	*/
+prodMessageSequence = ["", "", "", "", "", "", "", ""
+	, "", "", "", "", "", "", "", "",
+	"", "", "", "", "", "",
+	"", "", "", "", "", "", ""]
+for (var i = 0; i < prodMessageSequence.length; i++) {
+	prodMessageSequence[i] = null;
+}
+compMessageSequence = ["", "", "", "", "", "", "", ""
+	, "", "", "", "", "", "", "", "",
+	"", "", "", "", "", "",
+	"", "", "", "", "", "", ""]
+for (var i = 0; i < compMessageSequence.length; i++) {
+	compMessageSequence[i] = null;
+}
 
 // Global storing the current instruction within the trial
 var currentInstructionCounter = 0
@@ -174,43 +197,43 @@ function playNextInstruction() {
 
 	// Checks for comp or prod trial, generates the instruction message timeline object for the appropriate trial
 	if (comp) {
-		if (compMessageSequence[currentInstructionCounter] == null){
-		instruction = {
-			// Displays message with no user response
-			type: 'image-keyboard-response',
-			stimulus: blank.png,
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 0
-		}	
+		if (compMessageSequence[currentInstructionCounter] == null) {
+			instruction = {
+				// Displays message with no user response
+				type: 'image-keyboard-response',
+				stimulus: '/static/elise/img/images/blank.png',
+				choices: jsPsych.NO_KEYS,
+				trial_duration: 0
+			}
 		}
-		else{
-		instruction = {
-			// Displays message with no user response
-			type: 'image-keyboard-response',
-			stimulus: compMessageSequence[currentInstructionCounter],
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 2500
-		}
+		else {
+			instruction = {
+				// Displays message with no user response
+				type: 'image-keyboard-response',
+				stimulus: compMessageSequence[currentInstructionCounter],
+				choices: jsPsych.NO_KEYS,
+				trial_duration: 2500
+			}
 		}
 	}
 	else {
-		if (prodMessageSequence[currentInstructionCounter] == null){
-		instruction = {
-			// Displays message with no user response
-			type: 'image-keyboard-response',
-			stimulus: blank.png,
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 0
-		}	
+		if (prodMessageSequence[currentInstructionCounter] == null) {
+			instruction = {
+				// Displays message with no user response
+				type: 'image-keyboard-response',
+				stimulus: '/static/elise/img/images/blank.png',
+				choices: jsPsych.NO_KEYS,
+				trial_duration: 0
+			}
 		}
-		else{
-		instruction = {
-			// Displays message with no user response
-			type: 'image-keyboard-response',
-			stimulus: prodMessageSequence[currentInstructionCounter],
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 2500
-		}
+		else {
+			instruction = {
+				// Displays message with no user response
+				type: 'image-keyboard-response',
+				stimulus: prodMessageSequence[currentInstructionCounter],
+				choices: jsPsych.NO_KEYS,
+				trial_duration: 2500
+			}
 		}
 	}
 	// Increments counter so next instruction is selected on the next call
@@ -218,13 +241,21 @@ function playNextInstruction() {
 	return instruction;
 }
 
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 // Generates an experiment timeline 
 function makeExp() {
-
+	
 	// Obtains boolean value 'comp' from URL which encodes whether the experiment will be production or comprehension
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
-	const comp = urlParams.get('comp') == 'true';
+	comp = urlParams.get('comp') == 'true';
 
 	// Constructs dictionary of appropriate sound and image files
 	constructValues()
@@ -252,11 +283,11 @@ function makeExp() {
 	}
 	var bigPrompts = [];
 	for (var i = 0; i < bigValues.length; i++) {
-		bigSounds.push(bigValues[i][2]);
+		bigPrompts.push(bigValues[i][2]);
 	}
 	var smallPrompts = [];
 	for (var i = 0; i < smallValues.length; i++) {
-		smallSounds.push(smallValues[i][2]);
+		smallPrompts.push(smallValues[i][2]);
 	}
 
 	// Shuffles the big and small images, sounds and prompts
@@ -276,8 +307,8 @@ function makeExp() {
 	shuffle(trialData);
 
 	// Stores experiment timeline object
-	experiments = []
-	
+	var experiments = []
+
 	//Openingmessagec		openingmessagep
 	//Overviewmessage
 	//Audiocheckmessage1
@@ -291,85 +322,133 @@ function makeExp() {
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
-	experiments.push(audio_check_trial())
+	//experiments.push(audio_check_trial())
 	experiments.push(playNextInstruction())
-	experiments.push(audio_check_trial())
+	//experiments.push(audio_check_trial())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
-		
-		// Current row
-		curr = trialData[0];
-	
-		// Stores experiment block for this row
-		block = [];
 
-		// Shuffles the row itself
-		shuffle(curr);
+	// Current row
+	curr = trialData[0];
 
-		//[first 6 passive trials]
-		// Iterates through the row, obtaining trial objects
+	// Stores experiment block for this row
+	block = [];
+
+	// Shuffles the row itself
+	shuffle(curr);
+
+	//[first 6 passive trials]
+	// Iterates through the row, obtaining trial objects
+	for (var j = 0; j < curr.length; j++) {
+
+		// Obtains monster number and plurality from the parsed data
+		var monsterIndex = parseInt(curr[j][0]);
+		var singOrPlural = curr[j][1];
+
+		// Calls functions to obtain trial objects and pushes them to the timeline
+		// this part of the experiment contains passive comprehension trials
+		experiments.push(passive_comprehension_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+	}
+	//Passivemessage2
+	//Activecompmessage1bcd						activeprodmessage1
+	//[1 practice mismatch trial w apple/pear]			-
+	//[1 practice match trial w apple/apple]			-
+	//Activecompmessage11								-
+	//Activecompmessage							activeprodmessage
+
+	experiments.push(playNextInstruction())
+	experiments.push(playNextInstruction())
+	experiments.push(playNextInstruction())
+	experiments.push(playNextInstruction())
+	experiments.push(playNextInstruction())
+	experiments.push(playNextInstruction())
+
+	// Current row
+	curr = trialData[0];
+
+	// Shuffles the row sequence once again
+	shuffle(curr);
+
+	// Creates a list of 3 random indexes to decide which of the active trials will be mismatches
+	// These will only be used for active comprehension blocks
+	var index_list = []
+	for (var k = 0; k < 6; k++) {
+		index_list.push(k);
+	}
+	var mismatches = []
+	var randind = 0;
+	var randchoice = 0;
+	randind = (Math.floor(Math.random() * 6))
+	randchoice = (index_list.splice(randind, 1)[0])
+	mismatches.push(randchoice);
+	randind = (Math.floor(Math.random() * 5))
+	randchoice = (index_list.splice(randind, 1)[0])
+	mismatches.push(randchoice);
+	randind = (Math.floor(Math.random() * 4))
+	randchoice = (index_list.splice(randind, 1)[0])
+	mismatches.push(randchoice);
+	console.log(mismatches)
+	mismatches = new Set(mismatches);
+	//[first 6 active comprehension trials]		[first 6 active production trials]
+	// Comprehension trial
+	if (comp) {
+
+		// Same process as passive trial but generates active comprehension trial 
 		for (var j = 0; j < curr.length; j++) {
+			//console.log("here", curr);
+			var monsterIndex = parseInt(curr[j][0]);
+			var singOrPlural = curr[j][1];
+			var firstImage = allImages[monsterIndex];
+			var secondImage = allImages[monsterIndex];
+			var correct = true;
+			// This is where a mismatched image will be chosen for 3 random indices 
+			
+			if (mismatches.has(j)) {
+				console.log(j, mismatches)
+				correct = false;
+				randMonster = Math.floor(Math.random() * 30);
+				if (randMonster == monsterIndex && randMonster < 29) {
+					randMonster++;
+				}
+				else if (randMonster == monsterIndex) {
+					randMonster--;
+				}
+				firstImage = allImages[randMonster];
+			}
+		
+			experiments.push(active_comprehension_trial(
+				"/static/elise/img/images/" + firstImage,
+				"/static/elise/img/images/" + secondImage,
+				correct,
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
+				allPrompts[monsterIndex][singOrPlural]));
 
-			// Obtains monster number and plurality from the parsed data
+
+		}
+	}
+	// Production trial 
+	else {
+		for (var j = 0; j < curr.length; j++) {
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
 
-			// Calls functions to obtain trial objects and pushes them to the timeline
-			// this part of the experiment contains passive comprehension trials
-			block.push(passive_comprehension_trial("/elise/img/images/"+allImages[monsterIndex],
-				"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+			experiments.push(active_production_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 		}
-		//Passivemessage2
-		//Activecompmessage1bcd						activeprodmessage1
-		//[1 practice mismatch trial w apple/pear]			-
-		//[1 practice match trial w apple/apple]			-
-		//Activecompmessage11								-
-		//Activecompmessage							activeprodmessage
-		
-		block.push(playNextInstruction())
-		block.push(playNextInstruction())
-		block.push(playNextInstruction())
-		block.push(playNextInstruction())
-		block.push(playNextInstruction())
-		block.push(playNextInstruction())
-		
-		// Shuffles the row sequence once again
-		shuffle(curr);
-		
-		//[first 6 active comprehension trials]		[first 6 active production trials]
-		// Comprehension trial
-		if (comp) {
+	}
+	//Activecompmessage2	activeprodmessage2
+	experiments.push(playNextInstruction())
 
-			// Same process as passive trial but generates active comprehension trial 
-			for (var j = 0; j < curr.length; j++) {
-				var monsterIndex = parseInt(curr[j][0]);
-				var singOrPlural = curr[j][1];
-				block.push(active_comprehension_trial(
-					"/elise/img/images/"+allImages[monsterIndex],
-					"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
-			}
-		}
-		// Production trial 
-		else {
-			for (var j = 0; j < curr.length; j++) {
-				var monsterIndex = parseInt(curr[j][0]);
-				var singOrPlural = curr[j][1];
-				
-				block.push(active_production_trial("/elise/img/images/"+allImages[monsterIndex],
-					"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
-			}
-		}
-		//Activecompmessage2	activeprodmessage2
-		block.push(playNextInstruction())
-		
-		// Pushes block of experiments to matrix
-		experiments.push(block);
-	
+	// Pushes block of experiments to matrix
+	//experiments = experiments.concat(block);
+
 	// Iterates through the rows in the trial data matrix
 	// Starts at index 1 to account for initial trials that have already been added
+	//console.log(trialData.length);
 	for (var i = 1; i < trialData.length; i++) {
-
+		console.log(i);
 		// Current row
 		curr = trialData[i];
 
@@ -378,9 +457,9 @@ function makeExp() {
 
 		// Shuffles the row itself
 		shuffle(curr);
-		
+
 		//Passivemessage
-		block.push(playNextInstruction())
+		experiments.push(playNextInstruction())
 
 		//[round of 6 passive trials]
 		// Iterates through the row, obtaining trial objects
@@ -392,17 +471,36 @@ function makeExp() {
 
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
-			block.push(passive_comprehension_trial("/elise/img/images/"+allImages[monsterIndex],
-				"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+			experiments.push(passive_comprehension_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 		}
-		
-				
+
+
 		// Shuffles the row sequence once again
 		shuffle(curr);
+
+		// Creates a list of 3 random indexes to decide which of the active trials will be mismatches
+		// These will only be used for active comprehension blocks
+		index_list = []
+		for (var j = 0; j < 6; j++) {
+			index_list.push(j);
+		}
+		let mismatches = []
+		let randind = (Math.floor(Math.random() * 6))
+		let randchoice = (index_list.splice(randind, 1)[0])
+		mismatches.push(randchoice);
+		randind = (Math.floor(Math.random() * 5))
+		randchoice = (index_list.splice(randind, 1)[0])
+		mismatches.push(randchoice);
+		randind = (Math.floor(Math.random() * 4))
+		randchoice = (index_list.splice(randind, 1)[0])
+		mismatches.push(randchoice);
+		console.log(mismatches)
+		mismatches = new Set(mismatches);
 		
 		//Activecompmessage		activeprodmessage
-		block.push(playNextInstruction())
-				
+		experiments.push(playNextInstruction())
+
 		//[round of 6 active comp trials]	[round of 6 active prod trials]
 		// Comprehension trial
 		if (comp) {
@@ -411,36 +509,54 @@ function makeExp() {
 			for (var j = 0; j < curr.length; j++) {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
-				block.push(active_comprehension_trial(
-					"/elise/img/images/"+allImages[monsterIndex],
-					"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+				var firstImage = allImages[monsterIndex];
+				var secondImage = allImages[monsterIndex];
+				var correct = true;
+				// This is where a mismatched image will be chosen for 3 random indices 
+				if (mismatches.has(j)) {
+					correct = false;
+					let randMonster = Math.floor(Math.random() * 30);
+					if (randMonster == monsterIndex && randMonster < 29) {
+						randMonster++;
+					}
+					else if (randMonster == monsterIndex) {
+						randMonster--;
+					}
+					firstImage = allImages[randMonster];
+					
+				}
+				experiments.push(active_comprehension_trial(
+					"../elise/static/elise/img/images/" + firstImage,
+					"../elise/static/elise/img/images/" + secondImage,
+					correct,
+					"../elise/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
+					allPrompts[monsterIndex][singOrPlural]));
 			}
+			
 		}
 		// Production trial 
 		else {
 			for (var j = 0; j < curr.length; j++) {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
-				
-				block.push(active_production_trial("/elise/img/images/"+allImages[monsterIndex],
-					"/sound/combinedsounds/"+allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+
+				experiments.push(active_production_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 			}
 		}
-		
-		
+
+
 		//Audiocheckmessage
 		//[1 audiochecktrial]
 		//Breakmessage
-		if (i+1%3 == 0){
-			block.push(playNextInstruction())
-			block.push(audio_check_trial())
-			block.push(playNextInstruction())
+		if (i + 1 % 3 == 0) {
+			experiments.push(playNextInstruction())
+			//block.push(audio_check_trial())
+			experiments.push(playNextInstruction())
 		}
-		
-		// Pushes block of experiments to matrix
-		experiments.push(block);
 	}
-
+	
+	console.log(experiments)
 	// Returns matrix of experiment timelines
 	return experiments;
 }

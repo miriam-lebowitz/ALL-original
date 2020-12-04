@@ -12,13 +12,11 @@ function audioAfterTime(audio, time) {
 		}, time);
 	});
 }
-console.log(document.getElementsByTagName("form")[0])
+
 // Returns the active entry trial timeline
 function active_production_trial(image1, sound, prompt) {
 
-	// Saves current folder in server for ease of path determination
-	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search;
-
+	
 	// Audio instance is set
 	var audio = new Audio(sound);
 
@@ -40,14 +38,14 @@ function active_production_trial(image1, sound, prompt) {
 		{
 			// Survey input used to prompt user entry 
 			type: 'survey-html-form',
-			preamble: "<img src='" + loc + image1 + "' style='display:block;margin-left: auto;margin-right: auto;'>",
+			preamble: "<img src='" +image1 + "' style='display:block;margin-left: auto;margin-right: auto;'>",
 			// TODO: Make button wait for input 
 			html: '<p style="display:block;margin-left: auto;margin-right: auto;"> What is the name of this alien? click continue after typing </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required/>'
 		},
 		{
 			// Blank screen before image is displayed again
 			type: 'image-keyboard-response',
-			stimulus: '/elise/img/images/blank.png',
+			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}, {

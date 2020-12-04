@@ -15,7 +15,7 @@ function audioAfterTime(audio, time) {
 
 // Runs an active comprehension trial 
 function active_comprehension_trial(image1, image2, correct, sound, prompt) {
-
+	
 	// Determines the appropriate key to set for the correct value in the user interaction
 	var key;
 	if (correct) {
@@ -25,9 +25,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 		key = 65;
 	}
 
-	// Saves current folder in server for ease of path determination
-	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search;
-
+	
 	// Audio instance is set 
 	var audio = new Audio(sound);
 
@@ -38,7 +36,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 	});
 
 	// variable storing the timeline for the trial that will be output
-	var active_comprehension_trial = {
+	let active_comprehension_trial = {
 		timeline: [{
 			// Displays fixation cross
 			type: 'html-keyboard-response',
@@ -57,8 +55,8 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 			stimulus: image1,
 			key_answer: key,
 			choices: [76, 65],
-			correct_text: "<img src='" + loc + "/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
-			incorrect_text: "<img src='" + loc + "/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
+			correct_text: "<img src='" +"/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
+			incorrect_text: "<img src='" + "/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
 			prompt: "<p>Correct: press L			 Incorrect: press A</p>",
 			show_stim_with_feedback: true,
 			feedback_duration: 1000
@@ -66,7 +64,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 		{
 			// Blank screen to implement pause
 			type: 'image-keyboard-response',
-			stimulus: '/elise/img/images/blank.png',
+			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}, {
@@ -95,11 +93,12 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 				// TODO: this will be changed to a server ajax call later in process
 				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
 				console.log(data_from_current_node.csv())
+				
 			}
 		}
 		],
 		timeline_variables: [{
-			img: image1
+			img: null
 		}
 		]
 	}

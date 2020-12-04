@@ -12,7 +12,9 @@ function audioAfterTime(audio, time) {
 		}, time);
 	});
 }
-
+// Saves current folder in server for ease of path determination
+	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
+	
 // Returns the passive comprehension trial timeline
 function passive_comprehension_trial(image, sound, prompt) {
 
@@ -21,15 +23,15 @@ function passive_comprehension_trial(image, sound, prompt) {
 
 	// Adds the duration of the audio to the image displays within the timeline
 	audio.addEventListener("loadeddata", function() {
-		passive_comprehension_trial['timeline'][2]['trial_duration'] += 1000 * this.duration
-		passive_comprehension_trial['timeline'][5]['trial_duration'] += 1000 * this.duration
+		
+		passive_comprehension_trial['timeline'][2]['trial_duration'] += 100000 * this.duration
+		passive_comprehension_trial['timeline'][5]['trial_duration'] += 100000 * this.duration
+	
 	});
 
-	// Saves current folder in server for ease of path determination
-	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
-
+	
 	// Timeline object that will be returned
-	var passive_comprehension_trial = {
+	let passive_comprehension_trial = {
 		timeline: [{
 			// Displays fixation cross
 			type: 'html-keyboard-response',
@@ -52,7 +54,7 @@ function passive_comprehension_trial(image, sound, prompt) {
 		{
 			// Blank screen in between displays
 			type: 'image-keyboard-response',
-			stimulus: '/elise/img/images/blank.png',
+			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}, {
@@ -75,6 +77,6 @@ function passive_comprehension_trial(image, sound, prompt) {
 			img: image
 		}]
 	}
-	console.log(jsPsych.data.get());
+	
 	return passive_comprehension_trial
 }
