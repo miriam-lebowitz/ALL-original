@@ -348,7 +348,7 @@ function makeExp() {
 
 		// Calls functions to obtain trial objects and pushes them to the timeline
 		// this part of the experiment contains passive comprehension trials
-		experiments.push(passive_comprehension_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+		experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
 			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 	}
 	//Passivemessage2
@@ -434,7 +434,7 @@ function makeExp() {
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
 
-			experiments.push(active_production_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+			experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 		}
 	}
@@ -471,7 +471,7 @@ function makeExp() {
 
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
-			experiments.push(passive_comprehension_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+			experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 		}
 
@@ -526,10 +526,10 @@ function makeExp() {
 					
 				}
 				experiments.push(active_comprehension_trial(
-					"../elise/static/elise/img/images/" + firstImage,
-					"../elise/static/elise/img/images/" + secondImage,
+					"/static/elise/img/images/" + firstImage,
+					"/static/elise/img/images/" + secondImage,
 					correct,
-					"../elise/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
 					allPrompts[monsterIndex][singOrPlural]));
 			}
 			
@@ -540,7 +540,7 @@ function makeExp() {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
 
-				experiments.push(active_production_trial("../elise/static/elise/img/images/" + allImages[monsterIndex],
+				experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
 			}
 		}

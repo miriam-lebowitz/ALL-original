@@ -50,7 +50,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 			func: function() { audioAfterTime(audio, 1000) }
 		},
 		{
-			// Displays image and asks user to select y for yes or n for no based on the sound that is played
+			// Displays image and asks user to select L for correct or A for incorrect based on the sound that is played
 			type: 'categorize-image',
 			stimulus: image1,
 			key_answer: key,
