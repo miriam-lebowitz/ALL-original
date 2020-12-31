@@ -1,6 +1,7 @@
 EH1: pics disappear before audio is done, check timings
 EH2: some pics are too big (1600x1600)
 EH3: subtitle prompts don't match what's said; specifically, the determiner and suffix are correct but the stem is wrong
+Solution: Line 307 in utilities shuffles prompts and sounds separately, remove prompts from dict and lookup when calling experiment functions on the spot
 EH4: right now, my Firefox browser, on production trials, suggests what to type based on what I typed on previous trials. Is there a way to block this? It's pretty bad for the scientific integrity if people can see their previous guesses; they should really be trying from a blank slate each trial.
 FIXED  
 EH5: my terminal has a funny message (I think only after I closed the experiment?) that doesn't seem to cause problems:
