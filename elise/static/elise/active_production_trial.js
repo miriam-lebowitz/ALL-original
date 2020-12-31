@@ -40,7 +40,7 @@ function active_production_trial(image1, sound, prompt) {
 			type: 'survey-html-form',
 			preamble: "<img src='" +image1 + "' style='display:block;margin-left: auto;margin-right: auto;'>",
 			// TODO: Make button wait for input 
-			html: '<p style="display:block;margin-left: auto;margin-right: auto;"> What is the name of this alien? click continue after typing </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required/>'
+			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the name of this alien? click continue after typing </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
 			// Blank screen before image is displayed again
