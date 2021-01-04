@@ -17,17 +17,12 @@ function audioAfterTime(audio, time) {
 	
 // Returns the passive comprehension trial timeline
 function passive_comprehension_trial(image, sound, prompt) {
+	
+	// Retrieves audio file name for the purpose of getting the duration from the dictionary
+    var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Sets audio instance
 	var audio = new Audio(sound);
-
-	// Adds the duration of the audio to the image displays within the timeline
-	audio.addEventListener("loadeddata", function() {
-		
-		passive_comprehension_trial['timeline'][2]['trial_duration'] += 100000 * this.duration
-		passive_comprehension_trial['timeline'][5]['trial_duration'] += 100000 * this.duration
-	
-	});
 
 	
 	// Timeline object that will be returned
@@ -46,10 +41,11 @@ function passive_comprehension_trial(image, sound, prompt) {
 		},
 		{
 			// Displays image with no user response
+			// Adds sound duration to trial time
 			type: 'image-keyboard-response',
 			stimulus: jsPsych.timelineVariable('img'),
 			choices: jsPsych.NO_KEYS,
-			trial_duration: 2500
+			trial_duration: 2500+1000*(parseFloat(durationDict[audioFileName]))
 		},
 		{
 			// Blank screen in between displays
@@ -65,11 +61,12 @@ function passive_comprehension_trial(image, sound, prompt) {
 		},
 		{
 			// Displays image a second time
+			// Adds sound duration to trial time
 			type: 'image-keyboard-response',
 			prompt: '<p>'+prompt+'<\p>',
 			stimulus: jsPsych.timelineVariable('img'),
 			choices: jsPsych.NO_KEYS,
-			trial_duration: 2000
+			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
 		
 		],

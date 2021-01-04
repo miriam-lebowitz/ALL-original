@@ -25,15 +25,12 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 		key = 65;
 	}
 
-	
+    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
+
 	// Audio instance is set 
 	var audio = new Audio(sound);
 
-	// Audio file duration is used to determine how long the images need to be shown
-	audio.addEventListener("loadeddata", function() {
-		active_comprehension_trial['timeline'][2]['stimulus_duration'] += 1000 * this.duration;
-		active_comprehension_trial['timeline'][5]['trial_duration'] += 1000 * this.duration;
-	});
 
 	// variable storing the timeline for the trial that will be output
 	let active_comprehension_trial = {
@@ -79,7 +76,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 			prompt: "<p>" + prompt + "</p>",
 			stimulus: image2,
 			choices: jsPsych.NO_KEYS,
-			trial_duration: 2000
+			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
 			, {
 			// Retrieves and separates relevant data from the appropriate timeline node

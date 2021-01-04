@@ -208,11 +208,19 @@ function playNextInstruction() {
 		}
 		else {
 			instruction = {
-				// Displays message with no user response
-				type: 'image-keyboard-response',
-				stimulus: compMessageSequence[currentInstructionCounter],
-				choices: jsPsych.NO_KEYS,
-				trial_duration: 2500
+				type: 'instructions',
+				//pages: ["static/elise/Instructions/"+compMessageSequence[currentInstructionCounter]+".txt"]
+				// For every \n, make a second line break so they are visible
+				// Remove 'Press enter to continue' because Next> line is easy enough to understand
+				// See if there is an option to remove Previous button
+				pages: ["Welcome to our Experiment! \n"
+					+ "In this experiment, you'll be learning a new language. Some of the time, you'll simply be hearing words in the language and looking at pictures of what the word refers to. We'll call this 'passive learning'. At other times, you'll be doing 'active learning', in which you guess what words refer to.\n"
+					+ "Since this is an online experiment, we will be monitoring your progress. Treat this as you would an in person experiment. There will be designated break times, but if you step away from the computer for more than 1 minute while there is no break, or for more than 5 minutes during a break, the experiment will halt and you won't get credit for the full experiment.\n"
+					+ "Before we start, we'll explain the general structure of the experiment.\n "
+					+ "(press Next> to continue)"]
+				,
+				show_clickable_nav: true,
+				allow_backward:false
 			}
 		}
 	}
