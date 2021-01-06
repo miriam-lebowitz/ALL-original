@@ -289,27 +289,16 @@ function makeExp() {
 	for (var i = 0; i < smallValues.length; i++) {
 		smallSounds.push(smallValues[i][1]);
 	}
-	var bigPrompts = [];
-	for (var i = 0; i < bigValues.length; i++) {
-		bigPrompts.push(bigValues[i][2]);
-	}
-	var smallPrompts = [];
-	for (var i = 0; i < smallValues.length; i++) {
-		smallPrompts.push(smallValues[i][2]);
-	}
 
 	// Shuffles the big and small images, sounds and prompts
 	shuffle(bigImages);
 	shuffle(smallImages);
 	shuffle(bigSounds);
 	shuffle(smallSounds);
-	shuffle(bigPrompts);
-	shuffle(smallPrompts);
 
 	// Concatenates images such that 0-17 are big, 18-29 small
 	var allImages = bigImages.concat(smallImages);
 	var allSounds = bigSounds.concat(smallSounds);
-	var allPrompts = bigPrompts.concat(smallPrompts);
 
 	// Shuffles the row sequences in trial data 
 	shuffle(trialData);
@@ -357,7 +346,7 @@ function makeExp() {
 		// Calls functions to obtain trial objects and pushes them to the timeline
 		// this part of the experiment contains passive comprehension trials
 		experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 	}
 	//Passivemessage2
 	//Activecompmessage1bcd						activeprodmessage1
@@ -431,7 +420,7 @@ function makeExp() {
 				"/static/elise/img/images/" + secondImage,
 				correct,
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-				allPrompts[monsterIndex][singOrPlural]));
+				soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 
 
 		}
@@ -443,7 +432,7 @@ function makeExp() {
 			var singOrPlural = curr[j][1];
 
 			experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 		}
 	}
 	//Activecompmessage2	activeprodmessage2
@@ -480,7 +469,7 @@ function makeExp() {
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
 			experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 		}
 
 
@@ -538,7 +527,7 @@ function makeExp() {
 					"/static/elise/img/images/" + secondImage,
 					correct,
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-					allPrompts[monsterIndex][singOrPlural]));
+					soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 			}
 			
 		}
@@ -549,7 +538,7 @@ function makeExp() {
 				var singOrPlural = curr[j][1];
 
 				experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], allPrompts[monsterIndex][singOrPlural]));
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 			}
 		}
 
@@ -564,7 +553,6 @@ function makeExp() {
 		}
 	}
 	
-	console.log(experiments)
 	// Returns matrix of experiment timelines
 	return experiments;
 }
