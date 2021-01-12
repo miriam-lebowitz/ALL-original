@@ -9,6 +9,7 @@ FIXED
 EH5: my terminal has a funny message (I think only after I closed the experiment?) that doesn't seem to cause problems:
 127.0.0.1 - - [21/Dec/2020 14:18:31] code 404, message File not found
 127.0.0.1 - - [21/Dec/2020 14:18:31] "GET /favicon.ico HTTP/1.1" 404 -
+EH6: right now the aliens that are plural (anything ending in -ool and -af) are showing as singular pictures; there should be two pictures showing side by side for plural trials.
 
 Next steps:
 LR1: messages [explained] (straightforward)
