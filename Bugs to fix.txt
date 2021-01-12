@@ -9,7 +9,9 @@ FIXED
 EH5: my terminal has a funny message (I think only after I closed the experiment?) that doesn't seem to cause problems:
 127.0.0.1 - - [21/Dec/2020 14:18:31] code 404, message File not found
 127.0.0.1 - - [21/Dec/2020 14:18:31] "GET /favicon.ico HTTP/1.1" 404 -
-EH6: right now the aliens that are plural (anything ending in -ool and -af) are showing as singular pictures; there should be two pictures showing side by side for plural trials.
+EH6: right now the aliens that are plural (anything ending in -ool and -af) are showing as singular pictures; there should be two pictures showing side by side for plural trials. Note that you do already have this as input into the trial (whether it's plural or singular) so it shouldn't be much work. For plural it should just show two pictures of the same alien right next to each other as close as possible.
+EH7: right now I need to click on the textbox separately for each separate production trial. Is there an easy way to have the cursor start there automatically for each trial? This is way less important than the other stuff, more a convenience thing.
+
 
 Next steps:
 LR1: messages [explained] (straightforward)
