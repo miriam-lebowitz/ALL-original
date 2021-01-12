@@ -14,8 +14,11 @@ EH6: right now the aliens that are plural (anything ending in -ool and -af) are 
 Next steps:
 LR1: messages [explained] (straightforward)
 LR2: implement audio check trials [explained] (straightforward)
+DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR3: forced choice 2 pics (medium)
+DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR4: forced choice 4 pics (medium+)
+DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR5: grammaticality judgment (medium++)
 LR6: production test (straightforward)
 LR7: logging (straightforward but a lot)
