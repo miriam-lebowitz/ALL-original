@@ -22,6 +22,7 @@ DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR4: forced choice 4 pics (medium+)
 DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR5: grammaticality judgment (medium++)
+DONE - place corrections in bugs, not yet implemented into full trial sequence
 LR6: production test (straightforward)
 LR7: logging (straightforward but a lot)
 
