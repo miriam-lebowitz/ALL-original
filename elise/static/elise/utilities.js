@@ -154,37 +154,26 @@ function constructValues() {
 		// Retrieves sounds for plural and singular with selected determiner
 		singSound = soundFileName(detLargeSing, false, i, true)
 		plurSound = soundFileName(detLargePlur, false, i, false)
-
+		
 		// Adds current monster to dictionary in the structure 
 		// [image file name, sub-dictionary storing plural sound file with key p and singular sound file with key s, sub-dictionary storing plural prompt string with key p and singular prompt string with key s]
 		big[i - 12] = [img, { "p": plurSound, "s": singSound }, { "p": soundToPrompt[plurSound], "s": soundToPrompt[singSound] }]
 	}
 }
+
 // Lists of instructions for comprehension and production trials
 // TODO: These are not currently the right file names for the sequences
 /*prodMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
 	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
 	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
 	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
-compMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
+compMessageSequence = ["openingmessagec", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
 	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
 	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
 	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
 	*/
-prodMessageSequence = ["", "", "", "", "", "", "", ""
-	, "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "",
-	"", "", "", "", "", "", ""]
-for (var i = 0; i < prodMessageSequence.length; i++) {
-	prodMessageSequence[i] = null;
-}
-compMessageSequence = ["", "", "", "", "", "", "", ""
-	, "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "",
-	"", "", "", "", "", "", ""]
-for (var i = 0; i < compMessageSequence.length; i++) {
-	compMessageSequence[i] = null;
-}
+
+
 
 // Global storing the current instruction within the trial
 var currentInstructionCounter = 0
@@ -209,15 +198,7 @@ function playNextInstruction() {
 		else {
 			instruction = {
 				type: 'instructions',
-				//pages: ["static/elise/Instructions/"+compMessageSequence[currentInstructionCounter]+".txt"]
-				// For every \n, make a second line break so they are visible
-				// Remove 'Press enter to continue' because Next> line is easy enough to understand
-				// See if there is an option to remove Previous button
-				pages: ["Welcome to our Experiment! \n"
-					+ "In this experiment, you'll be learning a new language. Some of the time, you'll simply be hearing words in the language and looking at pictures of what the word refers to. We'll call this 'passive learning'. At other times, you'll be doing 'active learning', in which you guess what words refer to.\n"
-					+ "Since this is an online experiment, we will be monitoring your progress. Treat this as you would an in person experiment. There will be designated break times, but if you step away from the computer for more than 1 minute while there is no break, or for more than 5 minutes during a break, the experiment will halt and you won't get credit for the full experiment.\n"
-					+ "Before we start, we'll explain the general structure of the experiment.\n "
-					+ "(press Next> to continue)"]
+				pages: [compMessageSequence[currentInstructionCounter]]
 				,
 				show_clickable_nav: true,
 				allow_backward:false
@@ -227,7 +208,6 @@ function playNextInstruction() {
 	else {
 		if (prodMessageSequence[currentInstructionCounter] == null) {
 			instruction = {
-				// Displays message with no user response
 				type: 'image-keyboard-response',
 				stimulus: '/static/elise/img/images/blank.png',
 				choices: jsPsych.NO_KEYS,
@@ -237,10 +217,11 @@ function playNextInstruction() {
 		else {
 			instruction = {
 				// Displays message with no user response
-				type: 'image-keyboard-response',
-				stimulus: prodMessageSequence[currentInstructionCounter],
-				choices: jsPsych.NO_KEYS,
-				trial_duration: 2500
+				type: 'instructions',
+				pages: [prodMessageSequence[currentInstructionCounter]]
+				,
+				show_clickable_nav: true,
+				allow_backward:false
 			}
 		}
 	}
@@ -250,16 +231,38 @@ function playNextInstruction() {
 }
 
 function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
+	const date = Date.now();
+	let currentDate = null;
+	do {
+		currentDate = Date.now();
+	} while (currentDate - date < milliseconds);
 }
-
+var prodMessageSequence;
+var compMessageSequence;
 // Generates an experiment timeline 
 function makeExp() {
 	
+
+	prodMessageSequence = [openingmessagep, "", "", "", "", "", "", ""
+		, "", "", "", "", "", "", "", "",
+		"", "", "", "", "", "",
+		"", "", "", "", "", "", ""]
+	for (var i = 0; i < prodMessageSequence.length; i++) {
+		if (prodMessageSequence[i] == ""){
+		prodMessageSequence[i] = null;
+		}
+	}
+	compMessageSequence = [openingmessagec, "", "", "", "", "", "", ""
+		, "", "", "", "", "", "", "", "",
+		"", "", "", "", "", "",
+		"", "", "", "", "", "", ""]
+	for (var i = 1; i < compMessageSequence.length; i++) {
+		if (compMessageSequence[i] == ""){
+		compMessageSequence[i] = null;
+		}
+	}
+	
+
 	// Obtains boolean value 'comp' from URL which encodes whether the experiment will be production or comprehension
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -401,7 +404,7 @@ function makeExp() {
 			var secondImage = allImages[monsterIndex];
 			var correct = true;
 			// This is where a mismatched image will be chosen for 3 random indices 
-			
+
 			if (mismatches.has(j)) {
 				console.log(j, mismatches)
 				correct = false;
@@ -414,7 +417,7 @@ function makeExp() {
 				}
 				firstImage = allImages[randMonster];
 			}
-		
+
 			experiments.push(active_comprehension_trial(
 				"/static/elise/img/images/" + firstImage,
 				"/static/elise/img/images/" + secondImage,
@@ -494,7 +497,7 @@ function makeExp() {
 		mismatches.push(randchoice);
 		console.log(mismatches)
 		mismatches = new Set(mismatches);
-		
+
 		//Activecompmessage		activeprodmessage
 		experiments.push(playNextInstruction())
 
@@ -520,7 +523,7 @@ function makeExp() {
 						randMonster--;
 					}
 					firstImage = allImages[randMonster];
-					
+
 				}
 				experiments.push(active_comprehension_trial(
 					"/static/elise/img/images/" + firstImage,
@@ -529,7 +532,7 @@ function makeExp() {
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
 					soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
 			}
-			
+
 		}
 		// Production trial 
 		else {
@@ -552,7 +555,7 @@ function makeExp() {
 			experiments.push(playNextInstruction())
 		}
 	}
-	
+
 	// Returns matrix of experiment timelines
 	return experiments;
 }
