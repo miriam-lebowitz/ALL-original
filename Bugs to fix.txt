@@ -11,7 +11,11 @@ EH5: my terminal has a funny message (I think only after I closed the experiment
 127.0.0.1 - - [21/Dec/2020 14:18:31] "GET /favicon.ico HTTP/1.1" 404 -
 EH6: right now the aliens that are plural (anything ending in -ool and -af) are showing as singular pictures; there should be two pictures showing side by side for plural trials. Note that you do already have this as input into the trial (whether it's plural or singular) so it shouldn't be much work. For plural it should just show two pictures of the same alien right next to each other as close as possible.
 EH7: right now I need to click on the textbox separately for each separate production trial. Is there an easy way to have the cursor start there automatically for each trial? This is way less important than the other stuff, more a convenience thing.
-
+EH8: Audiochecktrials can end way earlier than they currently do. They can end right after the participant types in what they heard, no need to show the pic and repeat the audio afterwards. 
+EH9: I assume you're planning to make it so that an input to the audiochecktrial is which audio it plays? Instead of hardcoding 'pizza' - just remove this comment if you were gonna do that while putting the audiochecktrials in the timeline.
+EH10: the 4 alternative forced choice trial needs to end right when the participant makes their choice. So no feedback (cross/check) and no correct image + sound again. 
+EH11: instead of having the text with all key-options at the bottom in the 4AFC trial, ideally I'd have it right by the pictures. I'm going to send you a ppt image of what I am hoping it may look like - I also want the images farther apart (though admittedly I don't know how that would interact with screen size). 
+EH12: for the grammaticality judgment trials, end them right when the participant presses a button, no feedback (e.g. green cross).
 
 Next steps:
 LR1: messages [explained] (straightforward)
