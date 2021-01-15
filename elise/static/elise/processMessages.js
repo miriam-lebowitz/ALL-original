@@ -1,6 +1,6 @@
-/**
- * 
- */
+// This code converts the message text from txt files to strings, allowing them to easily be placed into trial objects within the sequence
+
+// Variables that store strings containing messages
 var activecompmessage11;
 var activecompmessage1bcd;
 var activecompmessage2;
@@ -23,6 +23,9 @@ var prodtest2;
 var prodtestmessage;
 var vocabtestmessage1;
 var vocabtestmessage2;
+
+// Makes ajax calls for each individual text file
+// If message files and names are changed, they will need to have their ajax calls edited/added here 
 function processMessages() {
 	 
 	$.ajax({

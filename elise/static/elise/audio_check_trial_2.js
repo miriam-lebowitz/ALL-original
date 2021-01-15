@@ -16,11 +16,12 @@ function audioAfterTime(audio, time) {
 // Returns the active entry trial timeline
 function audio_check_trial_2() {
 	
+	// Image and sound for audio check
+	// TODO: make these random
 	var image1 = "/static/elise/img/images/pizza.png"
-	
 	var sound = "/static/elise/sound/Pizza.mp3"
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 	
 	// Audio instance is set
@@ -44,6 +45,7 @@ function audio_check_trial_2() {
 			// Survey input used to prompt user entry 
 			type: 'survey-html-form',
 			preamble: "",
+			// HTML form for user to enter info. "username" form serves only to prevent chrome from autocompleting
 			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the item? </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
@@ -65,12 +67,12 @@ function audio_check_trial_2() {
 			prompt: "<p>" + "pizza" + "</p>",
 			stimulus: image1,
 			choices: jsPsych.NO_KEYS,
+			// Arbitrary trial time for correct image to be displayed
 			trial_duration: 2000+1000*(1.4)
 		},
 		 {
-				// instruction
+				// Instruction page allows user to continue when ready 
 				type: 'instructions',
-				
 				pages: ["Continue when ready"]
 				,
 				show_clickable_nav: true,

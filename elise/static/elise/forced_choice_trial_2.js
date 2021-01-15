@@ -13,7 +13,7 @@ function audioAfterTime(audio, time) {
 	});
 }
 
-// Runs an active comprehension trial 
+// Runs a forced choice 2 trial with 2 images, a boolean determining which is correct and an associated sound file  
 function forced_choice_trial_2(image1, image2, correct, sound) {
 	
 	// Determines the appropriate key and image to set for the correct value in the user interaction
@@ -28,7 +28,7 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 		corimage = image2;
 	}
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Audio instance is set 
@@ -55,8 +55,8 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 			stimulus: "<img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'>",
 			key_answer: key,
 			choices: [76, 65],
-			correct_text: "<img src='" +"../elise/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
-			incorrect_text: "<img src='" + "../elise/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
+			correct_text: "<img src='" +"/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
+			incorrect_text: "<img src='" + "/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
 			prompt: "<p>Left Image: press L			 Right Image: press A</p>",
 			show_stim_with_feedback: true,
 			feedback_duration: 1000
@@ -64,7 +64,7 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 		{
 			// Blank screen to implement pause
 			type: 'image-keyboard-response',
-			stimulus: '../elise/static/elise/img/images/blank.png',
+			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}, {
@@ -79,6 +79,7 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 			prompt: "<p>" + "" + "</p>",
 			stimulus: corimage,
 			choices: jsPsych.NO_KEYS,
+			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
 			, {

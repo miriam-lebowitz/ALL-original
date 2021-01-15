@@ -16,7 +16,7 @@ function audioAfterTime(audio, time) {
 // Returns the active entry trial timeline
 function active_production_trial(image1, sound, prompt) {
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 	
 	// Audio instance is set
@@ -35,6 +35,7 @@ function active_production_trial(image1, sound, prompt) {
 			// Survey input used to prompt user entry 
 			type: 'survey-html-form',
 			preamble: "<img src='" +image1 + "' style='display:block;margin-left: auto;margin-right: auto;'>",
+			// html form for user to enter info. The "username" form serves only to prevent chrome from autofilling the form 
 			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the name of this alien? click continue after typing </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
@@ -56,6 +57,7 @@ function active_production_trial(image1, sound, prompt) {
 			prompt: "<p>" + prompt + "</p>",
 			stimulus: image1,
 			choices: jsPsych.NO_KEYS,
+			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
 			, {

@@ -16,7 +16,7 @@ function audioAfterTime(audio, time) {
 // Runs an active comprehension trial 
 function grammaticality_judgment_trial(correct, sound) {
 	
-	// Determines the appropriate key and image to set for the correct value in the user interaction
+	// Determines the appropriate key and image to set for the correct value in the user interaction (76 is L, 65 is A)
 	var corimage;
 	var key;
 	if (correct) {

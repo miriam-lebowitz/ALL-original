@@ -16,7 +16,7 @@ function audioAfterTime(audio, time) {
 // Runs an active comprehension trial 
 function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 	
-	// Determines the appropriate key to set for the correct value in the user interaction
+	// Determines the appropriate key to set for the correct value in the user interaction (76 is L, 65 is A)
 	var key;
 	if (correct) {
 		key = 76;
@@ -25,7 +25,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 		key = 65;
 	}
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Audio instance is set 
@@ -76,6 +76,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt) {
 			prompt: "<p>" + prompt + "</p>",
 			stimulus: image2,
 			choices: jsPsych.NO_KEYS,
+			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
 			, {

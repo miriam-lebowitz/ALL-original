@@ -13,7 +13,7 @@ function audioAfterTime(audio, time) {
 	});
 }
 
-// Runs an active comprehension trial 
+// Runs a forced choice trial with 4 input images, the correct choice between 1 and 4 and the associated sound as arguments
 function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 	
 	// Determines the appropriate key and image to set for the correct value in the user interaction
@@ -39,7 +39,7 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 	}
 	
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Audio instance is set 
@@ -61,7 +61,7 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 			func: function() { audioAfterTime(audio, 1000) }
 		},
 		{
-			// Displays image and asks user to select y for yes or n for no based on the sound that is played
+			// Displays images and selects correct key based on function argument "correct", which is stored as "key" in the switch statement earlier in the function
 			type: 'categorize-html',
 			stimulus: "<img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><div style='clear:both'></div><img src='" + image3+"' style='margin-left: auto;margin-right: auto;'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;'>",
 			key_answer: key,

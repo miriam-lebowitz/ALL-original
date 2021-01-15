@@ -47,7 +47,7 @@
 	<p>
 </body>
 <script>
-// Ajax call to get training list 
+// Ajax call to get training list for training trials 
 $(document).ready(function() {
 	
 	$.ajax({
@@ -59,6 +59,7 @@ $(document).ready(function() {
 		}
 	});
 });
+// Calls processMessages to retrieve the message text files and convert them to strings for use in the experiment 
 $(document).ready(function() {
 	processMessages();
 });

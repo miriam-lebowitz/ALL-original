@@ -18,7 +18,7 @@ function audioAfterTime(audio, time) {
 // Returns the passive comprehension trial timeline
 function passive_comprehension_trial(image, sound, prompt) {
 	
-	// Retrieves audio file name for the purpose of getting the duration from the dictionary
+	// Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Sets audio instance
@@ -45,6 +45,7 @@ function passive_comprehension_trial(image, sound, prompt) {
 			type: 'image-keyboard-response',
 			stimulus: jsPsych.timelineVariable('img'),
 			choices: jsPsych.NO_KEYS,
+			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2500+1000*(parseFloat(durationDict[audioFileName]))
 		},
 		{

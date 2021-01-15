@@ -230,6 +230,7 @@ function playNextInstruction() {
 	return instruction;
 }
 
+// Function used to pause the trial when required
 function sleep(milliseconds) {
 	const date = Date.now();
 	let currentDate = null;
@@ -237,12 +238,15 @@ function sleep(milliseconds) {
 		currentDate = Date.now();
 	} while (currentDate - date < milliseconds);
 }
+
+// Files storing message sequence globals that will be assigned within the makeExp function. They are assigned within this function because it won't be called until the files have already been processed 
 var prodMessageSequence;
 var compMessageSequence;
+
 // Generates an experiment timeline 
 function makeExp() {
 	
-
+	// Sequences for messages. These are currently blank and filled with null spots and this will be fixed once all message names are correctly stored in the folder
 	prodMessageSequence = [openingmessagep, "", "", "", "", "", "", ""
 		, "", "", "", "", "", "", "", "",
 		"", "", "", "", "", "",

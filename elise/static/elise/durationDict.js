@@ -1,3 +1,4 @@
+// durationDict provides audio durations to prevent having to use asynchronous programming to retrieve them during the trial 
 var durationDict = {"det1_big0p.wav":"2.116939",
 "det1_big0s.wav":"2.174989",
 "det1_big1p.wav":"1.757029",

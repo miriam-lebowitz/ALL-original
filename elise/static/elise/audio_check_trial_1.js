@@ -16,11 +16,12 @@ function audioAfterTime(audio, time) {
 // Returns the active entry trial timeline
 function audio_check_trial_1() {
 	
+	// Image and sound for audio check
+	// TODO: make this random
 	var image1 = "/static/elise/img/images/pizza.png"
-	
 	var sound = "/static/elise/sound/Pizza.mp3"
 
-    // Retrieves audio file name for the purpose of getting the duration from the dictionary
+    // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 	
 	// Audio instance is set
@@ -44,6 +45,7 @@ function audio_check_trial_1() {
 			// Survey input used to prompt user entry 
 			type: 'survey-html-form',
 			preamble: "<button onClick = 'playAudio(new Audio(\""+sound+"\"))'>Repeat audio</button>",
+			// HTML form for user. "username" form serves only to prevent chrome from autocompleting 
 			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the item? </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
@@ -68,15 +70,12 @@ function audio_check_trial_1() {
 			trial_duration: 2000+1000*(1.4)
 		},
 		 {
-				// instruction
-				type: 'instructions',
-				
+				// Instruction page to allow user to move forward when ready 
+				type: 'instructions',				
 				pages: ["Continue when ready"]
 				,
 				show_clickable_nav: true,
 				allow_backward:false
-				
-
 			}
 			
 		]
