@@ -13,13 +13,8 @@ function audioAfterTime(audio, time) {
 	});
 }
 
-// Returns the active entry trial timeline
-function audio_check_trial_1() {
-	
-	// Image and sound for audio check
-	// TODO: make this random
-	var image1 = "/static/elise/img/images/pizza.png"
-	var sound = "/static/elise/sound/Pizza.mp3"
+// Audio check trial that allows user to repeat
+function audio_check_trial_1(sound) {
 
     // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
@@ -54,20 +49,6 @@ function audio_check_trial_1() {
 			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		}, {
-			// Calls audio to play during the second image display
-			type: 'call-function',
-			async: false,
-			func: function() { audioAfterTime(audio, 1000) }
-		},
-		{
-			// Displays image a second time
-			// Adds sound duration to trial time
-			type: 'image-keyboard-response',
-			prompt: "<p>" + "pizza" + "</p>",
-			stimulus: image1,
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 2000+1000*(1.4)
 		},
 		 {
 				// Instruction page to allow user to move forward when ready 
