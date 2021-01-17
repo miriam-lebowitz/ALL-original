@@ -55,11 +55,11 @@ function grammaticality_judgment_trial(correct, sound) {
 			stimulus: "<p></p>",
 			key_answer: key,
 			choices: [76, 65],
-			correct_text: "<img src='" +"../elise/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
-			incorrect_text: "<img src='" + "../elise/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
-			prompt: "<p>Grammatical: press L			 Ungrammatical: press A</p>",
-			show_stim_with_feedback: true,
-			feedback_duration: 1000
+			correct_text: "<p></p>",
+			incorrect_text: "<p></p>",
+			// Uses html pre tag to make spaces persist. To adjust distance in between, simply add spaces
+			prompt: "<pre>ungrammatical push a                                                                                   grammatical push l</pre>",
+			feedback_duration: 0
 		},
 		{
 			// Blank screen to implement pause

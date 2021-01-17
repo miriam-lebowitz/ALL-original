@@ -66,11 +66,10 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 			stimulus: "<img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><div style='clear:both'></div><img src='" + image3+"' style='margin-left: auto;margin-right: auto;'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;'>",
 			key_answer: key,
 			choices: [76, 65,90,77],
-			correct_text: "<img src='" +"/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
-			incorrect_text: "<img src='" + "/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
 			prompt: "<p>Top Left Image: press A			 Top Right Image: press L</p><p>Bottom Left Image: press Z			 Bottom Right Image: press M</p>",
-			show_stim_with_feedback: true,
-			feedback_duration: 1000
+			correct_text:"<p></p>",
+			incorrect_text:"<p></p>",
+			feedback_duration:0
 		},
 		{
 			// Blank screen to implement pause
@@ -78,20 +77,7 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		}, {
-			// Calls sound in 1 second so that it will play during the image display
-			type: 'call-function',
-			async: false,
-			func: function() { audioAfterTime(audio, 1000) }
 		},
-		{
-			// Displays correct image 
-			type: 'image-keyboard-response',
-			prompt: "<p>" + "" + "</p>",
-			stimulus: corimage,
-			choices: jsPsych.NO_KEYS,
-			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
-		}
 			, {
 			// Retrieves and separates relevant data from the appropriate timeline node
 			type: 'call-function',
