@@ -14,13 +14,23 @@ function audioAfterTime(audio, time) {
 }
 
 // Returns the active entry trial timeline
-function active_production_trial(image1, sound, prompt) {
+function active_production_trial(image1, sound, prompt,plurality,alienidentifiernr) {
 
     // Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 	
 	// Audio instance is set
 	var audio = new Audio(sound);
+	
+	// Determines if big or small 
+	var neighborhood = (image1.substring(1+image1.lastIndexOf("/")));
+	neighborhood = neighborhood.substring(0,neighborhood.lastIndexOf("."))[0];
+	if(neighborhood == "h"){
+		neighborhood = "big";
+	}
+	else{
+		neighborhood = "small";
+	}
 
 	// Timeline for active entry trial 
 	var active_production_trial = {
@@ -72,6 +82,13 @@ function active_production_trial(image1, sound, prompt) {
 				// TODO: this will be changed to a server ajax call later in process
 				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
 				console.log(data_from_current_node.csv());
+
+
+				var data_array = [subjectnr,comp,trialnr,"AP",alienidentifiernr,image1,image1,sound, neighborhood, JSON.parse(data_from_current_node.select('responses').values[0])["first"],"N/A",data_from_current_node.select('rt').values[0],plurality]
+				total_data_array.push(data_array)
+				console.log(data_array)
+				// Increments trial number to account for adding this trial to experiment
+				trialnr++;
 
 			}
 		}

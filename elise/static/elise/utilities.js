@@ -216,7 +216,6 @@ function playNextInstruction() {
 		}
 		else {
 			instruction = {
-				// Displays message with no user response
 				type: 'instructions',
 				pages: [prodMessageSequence[currentInstructionCounter]]
 				,
@@ -242,7 +241,6 @@ function sleep(milliseconds) {
 // Files storing message sequence globals that will be assigned within the makeExp function. They are assigned within this function because it won't be called until the files have already been processed 
 var prodMessageSequence;
 var compMessageSequence;
-
 // Generates an experiment timeline 
 function makeExp() {
 	
@@ -278,7 +276,7 @@ function makeExp() {
 	// Obtains big and small values from the dictionary storing their data
 	var bigValues = Object.values(big);
 	var smallValues = Object.values(small);
-
+	
 	// Obtains the specific image and sound files and prompt text for each of the big and small data files
 	var bigImages = [];
 	for (var i = 0; i < bigValues.length; i++) {
@@ -297,16 +295,15 @@ function makeExp() {
 		smallSounds.push(smallValues[i][1]);
 	}
 
-	// Shuffles the big and small images, sounds and prompts
+	// Shuffles the big and small images and sounds
 	shuffle(bigImages);
 	shuffle(smallImages);
 	shuffle(bigSounds);
 	shuffle(smallSounds);
-
+	
 	// Concatenates images such that 0-17 are big, 18-29 small
 	var allImages = bigImages.concat(smallImages);
 	var allSounds = bigSounds.concat(smallSounds);
-
 	// Shuffles the row sequences in trial data 
 	shuffle(trialData);
 
@@ -408,7 +405,7 @@ function makeExp() {
 			var secondImage = allImages[monsterIndex];
 			var correct = true;
 			// This is where a mismatched image will be chosen for 3 random indices 
-
+			// TODO: randomly selects within entire list but should be just sublist
 			if (mismatches.has(j)) {
 				console.log(j, mismatches)
 				correct = false;
@@ -427,7 +424,7 @@ function makeExp() {
 				"/static/elise/img/images/" + secondImage,
 				correct,
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-				soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+				soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
 
 
 		}
@@ -439,7 +436,7 @@ function makeExp() {
 			var singOrPlural = curr[j][1];
 
 			experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
 		}
 	}
 	//Activecompmessage2	activeprodmessage2
@@ -534,7 +531,7 @@ function makeExp() {
 					"/static/elise/img/images/" + secondImage,
 					correct,
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-					soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+					soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
 			}
 
 		}
@@ -545,7 +542,7 @@ function makeExp() {
 				var singOrPlural = curr[j][1];
 
 				experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
 			}
 		}
 

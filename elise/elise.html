@@ -65,13 +65,24 @@ $(document).ready(function() {
 });
 	// URL param that sets whether this is a comprehension or production trial
 	var comp;
+	// Subject number
+	var subjectnr;
+	// Stores trial number which will be continuously incremented throughout the experiment
+	var trialnr = 1;
+	// Stores array of each trial data subarray
+	var total_data_array = []
+	// Stores participant data 
+	var participant_data_array = []
+	
 	document.addEventListener("click", function() {
        
 		
 		document.removeEventListener('click', arguments.callee);
 		jsPsych.init({
 			on_finish : function() {
-				jsPsych.data.displayData('csv');
+				console.log(total_data_array)
+				// Commented out server code to send data when ready
+				//sendJSONData(JSON.stringify(total_data_array), subjectnr)
 			},
 			timeline : makeExp()
 		})
