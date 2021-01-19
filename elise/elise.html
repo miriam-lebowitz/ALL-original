@@ -81,8 +81,10 @@ $(document).ready(function() {
 		jsPsych.init({
 			on_finish : function() {
 				console.log(total_data_array)
+				console.log(participant_data_array)
 				// Commented out server code to send data when ready
 				//sendJSONData(JSON.stringify(total_data_array), subjectnr)
+				//sendJSONData(JSON.stringify(participant_data_array), subjectnr)
 			},
 			timeline : makeExp()
 		})

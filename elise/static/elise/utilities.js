@@ -304,6 +304,23 @@ function makeExp() {
 	// Concatenates images such that 0-17 are big, 18-29 small
 	var allImages = bigImages.concat(smallImages);
 	var allSounds = bigSounds.concat(smallSounds);
+	
+	// Adds participant monster selections to data array
+	for(var i = 0; i < 12;i++){
+		participant_data_array.push([i,allImages[i],allSounds[i]["s"],allSounds[i]["p"],"big","training"])
+	}
+	for(var i = 12; i < 18;i++){
+		participant_data_array.push([i,allImages[i],allSounds[i]["s"],allSounds[i]["p"],"big","testing"])
+	}
+	// Adds participant monster selections to data array
+	for(var i = 18; i < 24;i++){
+		participant_data_array.push([i,allImages[i],allSounds[i]["s"],allSounds[i]["p"],"small","training"])
+	}
+	for(var i = 24; i < 30;i++){
+		participant_data_array.push([i,allImages[i],allSounds[i]["s"],allSounds[i]["p"],"small","testing"])
+	}
+	console.log(participant_data_array)
+	
 	// Shuffles the row sequences in trial data 
 	shuffle(trialData);
 
