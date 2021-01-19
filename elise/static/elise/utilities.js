@@ -320,7 +320,6 @@ function makeExp() {
 		participant_data_array.push([i,allImages[i],allSounds[i]["s"],allSounds[i]["p"],"small","testing"])
 	}
 	console.log(participant_data_array)
-	
 	// Shuffles the row sequences in trial data 
 	shuffle(trialData);
 
@@ -367,7 +366,7 @@ function makeExp() {
 		// Calls functions to obtain trial objects and pushes them to the timeline
 		// this part of the experiment contains passive comprehension trials
 		experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural));
 	}
 	//Passivemessage2
 	//Activecompmessage1bcd						activeprodmessage1
@@ -490,7 +489,7 @@ function makeExp() {
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
 			experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]]));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural));
 		}
 
 

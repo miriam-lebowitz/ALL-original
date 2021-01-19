@@ -63,10 +63,10 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 		{
 			// Displays images and selects correct key based on function argument "correct", which is stored as "key" in the switch statement earlier in the function
 			type: 'categorize-html',
-			stimulus: "<img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><div style='clear:both'></div><img src='" + image3+"' style='margin-left: auto;margin-right: auto;'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;'>",
+			stimulus: "<div style='float:left'><img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><p>a</p></div><div style='float:left'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><p>l</p></div><div style='clear:both;height:60px'></div><div style='float:left'><img src='" +image3+"'style='margin-left: auto;margin-right: auto;'><p>z</p></div><div style='float:left'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;'><p>m</p></div>",
 			key_answer: key,
-			choices: [76, 65,90,77],
-			prompt: "<p>Top Left Image: press A			 Top Right Image: press L</p><p>Bottom Left Image: press Z			 Bottom Right Image: press M</p>",
+			choices: [65, 76,90,77],
+			prompt: "<p></p>",
 			correct_text:"<p></p>",
 			incorrect_text:"<p></p>",
 			feedback_duration:0
@@ -77,8 +77,7 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		},
-			, {
+		},  {
 			// Retrieves and separates relevant data from the appropriate timeline node
 			type: 'call-function',
 			async: false,

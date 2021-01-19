@@ -16,13 +16,18 @@ function audioAfterTime(audio, time) {
 	var loc = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
 	
 // Returns the passive comprehension trial timeline
-function passive_comprehension_trial(image, sound, prompt) {
+function passive_comprehension_trial(image, sound, prompt, plurality) {
 	
 	// Retrieves audio file name without file path for the purpose of getting the duration from the dictionary
     var audioFileName = (sound.substring(1+sound.lastIndexOf("/")))
 
 	// Sets audio instance
 	var audio = new Audio(sound);
+	
+	// Sets image based on plurality(true indicates singular, false plural)
+	if(plurality){
+		image = image.substring(0,image.length-4)+"p.png";
+	}
 
 	
 	// Timeline object that will be returned

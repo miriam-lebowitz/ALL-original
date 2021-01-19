@@ -20,11 +20,11 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 	var corimage;
 	var key;
 	if (correct) {
-		key = 76;
+		key = 65;
 		corimage = image1;
 	}
 	else {
-		key = 65;
+		key = 76;
 		corimage = image2;
 	}
 
@@ -52,13 +52,14 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 		{
 			// Displays image and asks user to select y for yes or n for no based on the sound that is played
 			type: 'categorize-html',
-			stimulus: "<img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'>",
+			stimulus: "<div style='float:left'><img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><p>a</p></div><div style='float:left'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><p>l</p></div>",
 			key_answer: key,
-			choices: [76, 65],
-			prompt: "<p>Left Image: press L			 Right Image: press A</p>",
+			choices: [65, 76],
+			prompt: "<p></p>",
 			correct_text:"<p></p>",
 			incorrect_text:"<p></p>",
 			feedback_duration:0
+
 		},
 		{
 			// Blank screen to implement pause
@@ -67,6 +68,7 @@ function forced_choice_trial_2(image1, image2, correct, sound) {
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}
+		
 			, {
 			// Retrieves and separates relevant data from the appropriate timeline node
 			type: 'call-function',

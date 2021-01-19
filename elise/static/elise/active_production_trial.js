@@ -31,6 +31,11 @@ function active_production_trial(image1, sound, prompt,plurality,alienidentifier
 	else{
 		neighborhood = "small";
 	}
+	
+	// Sets image based on plurality(true indicates singular, false plural)
+	if(plurality){
+		image1 = image1.substring(0,image1.length-4)+"p.png";
+	}
 
 	// Timeline for active entry trial 
 	var active_production_trial = {
