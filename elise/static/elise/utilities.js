@@ -362,11 +362,21 @@ function makeExp() {
 		// Obtains monster number and plurality from the parsed data
 		var monsterIndex = parseInt(curr[j][0]);
 		var singOrPlural = curr[j][1];
+		var isPlural = false;
+
+		if (singOrPlural == 'p'){
+			isPlural = true;
+		}
+
+
 
 		// Calls functions to obtain trial objects and pushes them to the timeline
 		// this part of the experiment contains passive comprehension trials
 		experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural));
+			"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural));
+		console.log("following is the monsterindex:")
+		console.log(monsterIndex)
+		console.log(singOrPlural)
 	}
 	//Passivemessage2
 	//Activecompmessage1bcd						activeprodmessage1
@@ -417,20 +427,37 @@ function makeExp() {
 			//console.log("here", curr);
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
+			var isPlural = false;
+
+			if (singOrPlural == 'p'){
+				isPlural = true;
+			}
+
 			var firstImage = allImages[monsterIndex];
 			var secondImage = allImages[monsterIndex];
 			var correct = true;
 			// This is where a mismatched image will be chosen for 3 random indices 
-			// TODO: randomly selects within entire list but should be just sublist
+			// it's chosen 0-11 if that's what the monster itself is (big neighborhood, trained)
+			// it's chosen 18-23 if that's what the monster itself is (small neighborhood, trained)
 			if (mismatches.has(j)) {
 				console.log(j, mismatches)
 				correct = false;
-				randMonster = Math.floor(Math.random() * 30);
-				if (randMonster == monsterIndex && randMonster < 29) {
-					randMonster++;
-				}
-				else if (randMonster == monsterIndex) {
-					randMonster--;
+				if (monsterIndex < 12) {
+					randMonster = Math.floor(Math.random() * 12);
+					if (randMonster == monsterIndex && randMonster < 11) {
+						randMonster++;
+					}
+					else if (randMonster == monsterIndex) {
+						randMonster = 0;
+					}
+				} else {
+					randMonster = Math.floor(Math.random() * 6 + 18);
+					if (randMonster == monsterIndex && randMonster < 23) {
+						randMonster++;
+					}
+					else if (randMonster == monsterIndex) {
+						randMonster = 18;
+					}
 				}
 				firstImage = allImages[randMonster];
 			}
@@ -440,7 +467,7 @@ function makeExp() {
 				"/static/elise/img/images/" + secondImage,
 				correct,
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-				soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
+				soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
 
 
 		}
@@ -450,9 +477,16 @@ function makeExp() {
 		for (var j = 0; j < curr.length; j++) {
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
+			var isPlural = false;
+
+			if (singOrPlural == 'p'){
+				isPlural = true;
+			}
 
 			experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
+			console.log("following is the monsterindex:")
+			console.log(monsterIndex)
 		}
 	}
 	//Activecompmessage2	activeprodmessage2
@@ -486,10 +520,16 @@ function makeExp() {
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
 
+			var isPlural = false;
+
+			if (singOrPlural == 'p'){
+				isPlural = true;
+			}
+
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
 			experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural));
 		}
 
 
@@ -526,28 +566,45 @@ function makeExp() {
 			for (var j = 0; j < curr.length; j++) {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
+
+				var isPlural = false;
+
+				if (singOrPlural == 'p'){
+					isPlural = true;
+				}
 				var firstImage = allImages[monsterIndex];
 				var secondImage = allImages[monsterIndex];
 				var correct = true;
 				// This is where a mismatched image will be chosen for 3 random indices 
 				if (mismatches.has(j)) {
+					console.log(j, mismatches)
 					correct = false;
-					let randMonster = Math.floor(Math.random() * 30);
-					if (randMonster == monsterIndex && randMonster < 29) {
-						randMonster++;
-					}
-					else if (randMonster == monsterIndex) {
-						randMonster--;
+					if (monsterIndex < 12) {
+						randMonster = Math.floor(Math.random() * 12);
+						if (randMonster == monsterIndex && randMonster < 11) {
+							randMonster++;
+						}
+						else if (randMonster == monsterIndex) {
+							randMonster = 0;
+						}
+					} else {
+						randMonster = Math.floor(Math.random() * 6 + 18);
+						if (randMonster == monsterIndex && randMonster < 23) {
+							randMonster++;
+						}
+						else if (randMonster == monsterIndex) {
+							randMonster = 18;
+						}
 					}
 					firstImage = allImages[randMonster];
-
 				}
+
 				experiments.push(active_comprehension_trial(
 					"/static/elise/img/images/" + firstImage,
 					"/static/elise/img/images/" + secondImage,
 					correct,
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-					soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
+					soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
 			}
 
 		}
@@ -557,8 +614,14 @@ function makeExp() {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
 
+				var isPlural = false;
+
+				if (singOrPlural == 'p'){
+					isPlural = true;
+				}
+
 				experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],singOrPlural,monsterIndex));
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], soundToPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
 			}
 		}
 
