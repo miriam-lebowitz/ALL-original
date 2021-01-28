@@ -1,8 +1,8 @@
 
 BUGS:
-EH13: I want the text on which buttons to press to show up a bit differently: further apart, with 'ungrammatical push a' all the way at the left of the screen and 'grammatical push l' on the right of the screen.
-FIXED(explanation to further adjust spacing in comments; left to do: double check spacing in all trial types and update where necessary)
-EH16: foils for active comp trials are currently ANY alien except itself; need to at least make this any alien from same cell; possibly make this also include plural foils. Currently @utilities408
+
+EH24:
+
 
 Next steps:
 NS1: put messages in actual timeline for both conditions
@@ -18,6 +18,11 @@ LR6: production test (straightforward)
 LR7: logging (straightforward but a lot)
 DONE - for active production and active comprehension and user info, the rest will follow a very similar process
 
+
+Maybe/Later:
+EH17: in active comp trial, I want feedback to show below picture, and without the picture moving to the side
+EH19: reserve the singular pics as being in the middle of an 800x400 slide to line them up nicer for 4AFC
+EH22: take underscore out of prompts
 
 Done: 
 EH1: pics disappear before audio is done, check timings
@@ -44,7 +49,18 @@ EH9: I assume you're planning to make it so that an input to the audiochecktrial
 FIXED
 EH6: right now the aliens that are plural (anything ending in -ool and -af) are showing as singular pictures; there should be two pictures showing side by side for plural trials. Note that you do already have this as input into the trial (whether it's plural or singular) so it shouldn't be much work. For plural it should just show two pictures of the same alien right next to each other as close as possible.
 FIXED
-
+EH18: the 2AFC images show up too big and too close together; check 4AFC code for solution?; Nope, also wrong in 4AFC images.
+FIXED
+EH13: I want the text on which buttons to press to show up a bit differently: further apart, with 'ungrammatical push a' all the way at the left of the screen and 'grammatical push l' on the right of the screen.
+FIXED
+EH20: there are errors in prompts.js
+FIXED
+EH16: foils for active comp trials are currently ANY alien except itself; need to at least make this any alien from same cell; possibly make this also include plural foils. 
+FIXED
+EH21: currently it is playing all (passive) trials as plurals
+FIXED 
+EH23: zimbaaf is not as loud as all other words
+FIXED
 
 Abandoned:
 EH7: right now I need to click on the textbox separately for each separate production trial. Is there an easy way to have the cursor start there automatically for each trial? This is way less important than the other stuff, more a convenience thing.
