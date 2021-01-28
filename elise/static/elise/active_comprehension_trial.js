@@ -28,9 +28,9 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 	// Sets image based on plurality(true indicates singular, false plural)
 	if(plurality){
 		image1 = image1.substring(0,image1.length-4)+"p.png";
-		image2 = image1.substring(0,image2.length-4)+"p.png";
+		image2 = image2.substring(0,image2.length-4)+"p.png";
 	}
-	
+
 	// Determines if big or small
 	var neighborhood = (image2.substring(1+image2.lastIndexOf("/")));
 	neighborhood = neighborhood.substring(0,neighborhood.lastIndexOf("."))[0];
@@ -70,7 +70,8 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 			choices: [76, 65],
 			correct_text: "<img src='" +"/static/elise/img/images/greencheck.png'style='margin-left: auto;margin-right: auto;'>",
 			incorrect_text: "<img src='" + "/static/elise/img/images/redx.png' style='margin-left: auto;margin-right: auto;'>",
-			prompt: "<p>Correct: press L			 Incorrect: press A</p>",
+			// Uses html pre tag to make spaces persist. To adjust distance in between, simply add spaces
+			prompt: "<pre>Mismatch? Press a                                                                                   Match? Press l</pre>",
 			show_stim_with_feedback: true,
 			feedback_duration: 1000
 		},
