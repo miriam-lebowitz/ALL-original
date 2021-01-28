@@ -64,7 +64,7 @@ function grammaticality_judgment_trial(correct, sound) {
 		{
 			// Blank screen to implement pause
 			type: 'image-keyboard-response',
-			stimulus: '../elise/static/elise/img/images/blank.png',
+			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}
