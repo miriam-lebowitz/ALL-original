@@ -24,12 +24,6 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 	else {
 		key = 65;
 	}
-	
-	// Sets image based on plurality(true indicates singular, false plural)
-	if(plurality){
-		image1 = image1.substring(0,image1.length-4)+"p.png";
-		image2 = image2.substring(0,image2.length-4)+"p.png";
-	}
 
 	// Determines if big or small
 	var neighborhood = (image2.substring(1+image2.lastIndexOf("/")));

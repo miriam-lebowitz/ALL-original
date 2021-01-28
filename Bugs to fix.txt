@@ -1,7 +1,7 @@
 
 BUGS:
 
-EH24:
+EH26:
 
 
 Next steps:
@@ -23,6 +23,7 @@ Maybe/Later:
 EH17: in active comp trial, I want feedback to show below picture, and without the picture moving to the side
 EH19: reserve the singular pics as being in the middle of an 800x400 slide to line them up nicer for 4AFC
 EH22: take underscore out of prompts
+EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward.
 
 Done: 
 EH1: pics disappear before audio is done, check timings
@@ -60,6 +61,8 @@ FIXED
 EH21: currently it is playing all (passive) trials as plurals
 FIXED 
 EH23: zimbaaf is not as loud as all other words
+FIXED
+EH24: One random mismatch trial per active comprehension block should be a plural error.
 FIXED
 
 Abandoned:

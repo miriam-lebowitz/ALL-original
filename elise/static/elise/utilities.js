@@ -400,11 +400,13 @@ function makeExp() {
 
 	// Creates a list of 3 random indexes to decide which of the active trials will be mismatches
 	// These will only be used for active comprehension blocks
+	// The third mismatchtrial chosen will be a plurality mismatch instead of a noun mismatch
 	var index_list = []
 	for (var k = 0; k < 6; k++) {
 		index_list.push(k);
 	}
 	var mismatches = []
+	var pluralMismatch = []
 	var randind = 0;
 	var randchoice = 0;
 	randind = (Math.floor(Math.random() * 6))
@@ -415,32 +417,34 @@ function makeExp() {
 	mismatches.push(randchoice);
 	randind = (Math.floor(Math.random() * 4))
 	randchoice = (index_list.splice(randind, 1)[0])
-	mismatches.push(randchoice);
-	console.log(mismatches)
+	pluralMismatch.push(randchoice);
 	mismatches = new Set(mismatches);
+	pluralMismatch = new Set(pluralMismatch);
 	//[first 6 active comprehension trials]		[first 6 active production trials]
 	// Comprehension trial
 	if (comp) {
 
 		// Same process as passive trial but generates active comprehension trial 
 		for (var j = 0; j < curr.length; j++) {
-			//console.log("here", curr);
 			var monsterIndex = parseInt(curr[j][0]);
 			var singOrPlural = curr[j][1];
 			var isPlural = false;
-
-			if (singOrPlural == 'p'){
-				isPlural = true;
-			}
-
 			var firstImage = allImages[monsterIndex];
 			var secondImage = allImages[monsterIndex];
 			var correct = true;
+
+			// If target audio is plural, set images as plural
+			if (singOrPlural == 'p'){
+				isPlural = true;
+				firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+				secondImage = secondImage.substring(0,secondImage.length-4)+"p.png";
+			}
+
 			// This is where a mismatched image will be chosen for 3 random indices 
-			// it's chosen 0-11 if that's what the monster itself is (big neighborhood, trained)
-			// it's chosen 18-23 if that's what the monster itself is (small neighborhood, trained)
+			// It's chosen 0-11 if that's what the monster itself is (big neighborhood, trained)
+			// It's chosen 18-23 if that's what the monster itself is (small neighborhood, trained)
+			// For the single pluralMismatch it's simply the monster itself with opposite plurality
 			if (mismatches.has(j)) {
-				console.log(j, mismatches)
 				correct = false;
 				if (monsterIndex < 12) {
 					randMonster = Math.floor(Math.random() * 12);
@@ -460,6 +464,16 @@ function makeExp() {
 					}
 				}
 				firstImage = allImages[randMonster];
+				if(isPlural){
+					firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+				}
+			} else if (pluralMismatch.has(j)){
+				correct = false;
+				if(isPlural){
+					firstImage = allImages[monsterIndex];
+				} else{
+					firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+				}
 			}
 
 			experiments.push(active_comprehension_trial(
@@ -566,18 +580,23 @@ function makeExp() {
 			for (var j = 0; j < curr.length; j++) {
 				var monsterIndex = parseInt(curr[j][0]);
 				var singOrPlural = curr[j][1];
-
 				var isPlural = false;
-
-				if (singOrPlural == 'p'){
-					isPlural = true;
-				}
 				var firstImage = allImages[monsterIndex];
 				var secondImage = allImages[monsterIndex];
 				var correct = true;
+
+				// If target audio is plural, set images as plural
+				if (singOrPlural == 'p'){
+					isPlural = true;
+					firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+					secondImage = secondImage.substring(0,secondImage.length-4)+"p.png";
+				}
+
 				// This is where a mismatched image will be chosen for 3 random indices 
+				// It's chosen 0-11 if that's what the monster itself is (big neighborhood, trained)
+				// It's chosen 18-23 if that's what the monster itself is (small neighborhood, trained)
+				// For the single pluralMismatch it's simply the monster itself with opposite plurality
 				if (mismatches.has(j)) {
-					console.log(j, mismatches)
 					correct = false;
 					if (monsterIndex < 12) {
 						randMonster = Math.floor(Math.random() * 12);
@@ -597,6 +616,16 @@ function makeExp() {
 						}
 					}
 					firstImage = allImages[randMonster];
+					if(isPlural){
+						firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+					}
+				} else if (pluralMismatch.has(j)){
+					correct = false;
+					if(isPlural){
+						firstImage = allImages[monsterIndex];
+					} else{
+						firstImage = firstImage.substring(0,firstImage.length-4)+"p.png";
+					}
 				}
 
 				experiments.push(active_comprehension_trial(
