@@ -63,7 +63,7 @@ function forced_choice_trial_4(image1, image2,image3,image4, correct, sound) {
 		{
 			// Displays images and selects correct key based on function argument "correct", which is stored as "key" in the switch statement earlier in the function
 			type: 'categorize-html',
-			stimulus: "<div style='float:left'><img src='" +image1+"'style='margin-left: auto;margin-right: auto;'><p>a</p></div><div style='float:left'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;'><p>l</p></div><div style='clear:both;height:60px'></div><div style='float:left'><img src='" +image3+"'style='margin-left: auto;margin-right: auto;'><p>z</p></div><div style='float:left'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;'><p>m</p></div>",
+			stimulus: "<div style='float:left;'><img src='" +image1+"'style='margin-left: auto;margin-right: auto;height: 200;'><p>a</p></div><div style='float:right;'><img src='" + image2+"' style='margin-left: auto;margin-right: auto;height: 200;'><p>l</p></div><div style='clear:both;height:100px;'><img src='/static/elise/img/images/width.png' style='margin-left: auto;margin-right: auto;height: 80;' ></div><div style='float:left;'><img src='" +image3+"'style='margin-left: auto;margin-right: auto;height: 200;'><p>z</p></div><div style='float:right;'><img src='" + image4+"' style='margin-left: auto;margin-right: auto;height: 200;'><p>m</p></div>",
 			key_answer: key,
 			choices: [65, 76,90,77],
 			prompt: "<p></p>",
