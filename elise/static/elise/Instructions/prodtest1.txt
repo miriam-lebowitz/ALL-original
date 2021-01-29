@@ -11,4 +11,3 @@ As another example, let's say you are trying to simply type 'the house' in Spani
 
 This test will have break screens that tell you your progress (at 1/4th, 2/4th and 3/4th). After this test, the only thing left to do will be a really brief survey.
 
-(press ENTER to continue)
