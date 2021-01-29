@@ -1,8 +1,9 @@
 
 BUGS:
 
-EH26:
-
+EH30: adjust audiochecktrials; replace 'what is the item' with 'type the English word you hear', replace 'continue' with 'next', change break screen to 'TAKE A BREAK IF YOU NEED TO, but no longer than 5 minutes. (With 'continue' instead of 'next')'
+EH31: include screens before sound check saying SOUND CHECK
+EH32: create screens for after sound check trials in the grammar judgment and 4AFC tests to remind people of what the test is about. 
 
 Next steps:
 NS1: put messages in actual timeline for both conditions
@@ -24,6 +25,10 @@ EH17: in active comp trial, I want feedback to show below picture, and without t
 EH19: reserve the singular pics as being in the middle of an 800x400 slide to line them up nicer for 4AFC
 EH22: take underscore out of prompts
 EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward.
+EH26: Need whitespace to show up in the instructions
+EH27: read through all instructions and make sure they are all consistent, grammatical, etc; replace 'trial' with 'exercise', 'block' with 'group'.
+EH28: make 'next' / 'continue' consistent. Maybe continue if instructions, next if trial?
+EH29: re-introduce the green square around passive + feedback phase of active trials? If so, put back in relevant instructions too. 
 
 Done: 
 EH1: pics disappear before audio is done, check timings
