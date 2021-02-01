@@ -5,3 +5,5 @@ In this trial you will see a picture and hear words in the language. If the word
 After you make your choice, you will get feedback on whether you were correct or not. You will see a green checkmark if you were correct , and you will see a red X if you were wrong. Don't worry if you don't know the words very well yet - we don't expect you to. Just try your best and use this as practice. It will help you learn the words.
 
 After you see the check or the X, you will see the picture that matches the speech that you heard, and you'll hear the speech again. 
+
+We will first practice this with an English word.

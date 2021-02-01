@@ -30,7 +30,8 @@ function audio_check_trial_1(sound) {
 			stimulus: '+',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		}, {
+		}, 
+		{
 			// Calls audio to play during the second image display
 			type: 'call-function',
 			async: false,
@@ -41,7 +42,7 @@ function audio_check_trial_1(sound) {
 			type: 'survey-html-form',
 			preamble: "<button onClick = 'playAudio(new Audio(\""+sound+"\"))'>Repeat audio</button>",
 			// HTML form for user. "username" form serves only to prevent chrome from autocompleting 
-			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the item? </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
+			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> Type the English word you hear. </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
 			// Blank screen before image is displayed again
@@ -49,16 +50,7 @@ function audio_check_trial_1(sound) {
 			stimulus: '/static/elise/img/images/blank.png',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		},
-		 {
-				// Instruction page to allow user to move forward when ready 
-				type: 'instructions',				
-				pages: ["Continue when ready"]
-				,
-				show_clickable_nav: true,
-				allow_backward:false
-			}
-			
+		}			
 		]
 		,
 		timeline_variables: [{

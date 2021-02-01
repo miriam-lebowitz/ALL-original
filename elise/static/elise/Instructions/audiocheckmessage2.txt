@@ -2,7 +2,7 @@ Excellent!
 
 For all following sound checks, you will only hear the sound once, with no chance to replay it. So, make sure you never turn off your sound.
 
-These sound check trials will also be your chance throughout the experiment to take a short break. Once you've typed out the word you hear and clicked continue, the next screen will say 'TAKE A BREAK IF YOU NEED TO'. At that point, you can take a break of up to 5 minutes if you need to step away from your computer. 
+These sound check trials will also be your chance throughout the experiment to take a short break. Once you've typed out the word you hear and clicked 'continue', the next screen will say 'TAKE A BREAK IF YOU NEED TO'. At that point, you can take a break of up to 5 minutes if you need to step away from your computer. 
 
 If you step away for more than 5 minutes, the experiment will abort and you won't receive full credit for the experiment. 
 

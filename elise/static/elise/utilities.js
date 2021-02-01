@@ -161,18 +161,6 @@ function constructValues() {
 	}
 }
 
-// Lists of instructions for comprehension and production trials
-// TODO: These are not currently the right file names for the sequences
-/*prodMessageSequence = ["openingmessagep", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
-	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
-	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
-	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
-compMessageSequence = ["openingmessagec", "Overviewmessage", "Audiocheckmessage1", "Audiocheckmessage2", "Audiocheckmessage3", "Passivemessage1", "Passivemessage", "Passivemessage2"
-	, "activeprodmessage1", "activeprodmessage", "activeprodmessage2", "Passivemessage", "activeprodmessage", "Audiocheckmessage", "Breakmessage", "forcedchoicemessage2pic",
-	"audiocheckmessage", "breakmessage", "forcedchoicemessage4pic", "audiocheckmessage", "breakmessage", "grammaticalityjudgment",
-	"audiocheckmessage", "breakmessage", "prodtest1", "prodtest2", "audiocheckmessage", "breakmessage", "prodtestmessage"]
-	*/
-
 
 
 // Global storing the current instruction within the trial
@@ -241,23 +229,43 @@ function sleep(milliseconds) {
 // Files storing message sequence globals that will be assigned within the makeExp function. They are assigned within this function because it won't be called until the files have already been processed 
 var prodMessageSequence;
 var compMessageSequence;
+
+
 // Generates an experiment timeline 
 function makeExp() {
 	
-	// Sequences for messages. These are currently blank and filled with null spots and this will be fixed once all message names are correctly stored in the folder
-	prodMessageSequence = [openingmessagep, "", "", "", "", "", "", ""
-		, "", "", "", "", "", "", "", "",
-		"", "", "", "", "", "",
-		"", "", "", "", "", "", ""]
+	// Sequences for messages. 
+	prodMessageSequence = [openingmessagep, overviewmessage, audiocheckmessage1, audiocheckmessage2, audiocheckmessage, audiocheckmessage3, passivemessage1
+		, passivemessage, passivemessage2, activeprodmessage1, activeprodmessage, "", activeprodmessage2
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, forcedchoicemessage2pic, audiocheckmessage
+		, forcedchoicemessage4pic, audiocheckmessage, , audiocheckmessage, audiocheckmessage, audiocheckmessage
+		, grammaticalityjudgment, audiocheckmessage, audiocheckmessage, audiocheckmessage, audiocheckmessage
+		, prodtest1, prodtest2, audiocheckmessage, prodtestmessage
+		, audiocheckmessage, prodtestmessage, audiocheckmessage, prodtestmessage, audiocheckmessage
+		, endmessagep]
 	for (var i = 0; i < prodMessageSequence.length; i++) {
 		if (prodMessageSequence[i] == ""){
 		prodMessageSequence[i] = null;
 		}
 	}
-	compMessageSequence = [openingmessagec, "", "", "", "", "", "", ""
-		, "", "", "", "", "", "", "", "",
-		"", "", "", "", "", "",
-		"", "", "", "", "", "", ""]
+	compMessageSequence = [openingmessagec, overviewmessage, audiocheckmessage1, audiocheckmessage2, audiocheckmessage, audiocheckmessage3, passivemessage1
+		, passivemessage, passivemessage2, activecompmessage1bcd, activecompmessage11, activecompmessage, activecompmessage2,
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, forcedchoicemessage2pic, audiocheckmessage
+		, forcedchoicemessage4pic, audiocheckmessage, FC4message, audiocheckmessage, FC4message
+		, audiocheckmessage, FC4message, audiocheckmessage
+		, grammaticalityjudgment, audiocheckmessage, grammaticalityjudgmentmessage, audiocheckmessage, grammaticalityjudgmentmessage
+		, audiocheckmessage, grammaticalityjudgmentmessage, audiocheckmessage
+		, prodtest1, prodtest2, audiocheckmessage, prodtestmessage
+		, audiocheckmessage, prodtestmessage, audiocheckmessage, prodtestmessage, audiocheckmessage
+		, endmessagec]
 	for (var i = 1; i < compMessageSequence.length; i++) {
 		if (compMessageSequence[i] == ""){
 		compMessageSequence[i] = null;
@@ -326,22 +334,15 @@ function makeExp() {
 	// Stores experiment timeline object
 	var experiments = []
 
-	//Openingmessagec		openingmessagep
-	//Overviewmessage
-	//Audiocheckmessage1
-	//[audiochecktrial 1]
-	//Audiocheckmessage2
-	//[audiochecktrial2]
-	//Audiocheckmessage3
-	//Passivemessage1
-	//Passivemessage
+
 	// TODO: make these appear directly after step by step
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
-	//experiments.push(audio_check_trial())
+	experiments.push(audio_check_trial_1("/static/elise/sound/airplane_w.mp3"))
 	experiments.push(playNextInstruction())
-	//experiments.push(audio_check_trial())
+	experiments.push(playNextInstruction())
+	experiments.push(audio_check_trial_2("/static/elise/sound/candle_w.mp3"))
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
@@ -378,17 +379,14 @@ function makeExp() {
 		console.log(monsterIndex)
 		console.log(singOrPlural)
 	}
-	//Passivemessage2
-	//Activecompmessage1bcd						activeprodmessage1
-	//[1 practice mismatch trial w apple/pear]			-
-	//[1 practice match trial w apple/apple]			-
-	//Activecompmessage11								-
-	//Activecompmessage							activeprodmessage
 
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
-	experiments.push(playNextInstruction())
-	experiments.push(playNextInstruction())
+	if (comp) {
+		experiments.push(active_comprehension_trial("/static/elise/img/images/pear.png", "/static/elise/img/images/apple.png", false, "/static/elise/sound/apple_w.mp3", "Apple", false, "-"))
+		experiments.push(active_comprehension_trial("/static/elise/img/images/apple.png", "/static/elise/img/images/apple.png", true, "/static/elise/sound/apple_w.mp3", "Apple", false, "-"))
+	}
+
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 
@@ -420,7 +418,6 @@ function makeExp() {
 	pluralMismatch.push(randchoice);
 	mismatches = new Set(mismatches);
 	pluralMismatch = new Set(pluralMismatch);
-	//[first 6 active comprehension trials]		[first 6 active production trials]
 	// Comprehension trial
 	if (comp) {
 
@@ -503,7 +500,6 @@ function makeExp() {
 			console.log(monsterIndex)
 		}
 	}
-	//Activecompmessage2	activeprodmessage2
 	experiments.push(playNextInstruction())
 
 	// Pushes block of experiments to matrix
@@ -511,9 +507,7 @@ function makeExp() {
 
 	// Iterates through the rows in the trial data matrix
 	// Starts at index 1 to account for initial trials that have already been added
-	//console.log(trialData.length);
 	for (var i = 1; i < trialData.length; i++) {
-		console.log(i);
 		// Current row
 		curr = trialData[i];
 
@@ -660,8 +654,17 @@ function makeExp() {
 		//Breakmessage
 		if (i + 1 % 3 == 0) {
 			experiments.push(playNextInstruction())
-			//block.push(audio_check_trial())
-			experiments.push(playNextInstruction())
+			if (i == 2) {
+				experiments.push(audio_check_trial_2("/static/elise/sound/wallet_w.mp3"))
+			} else if (i == 5) {
+				experiments.push(audio_check_trial_2("/static/elise/sound/eraser_w.mp3"))
+			} else if (i == 8) {
+				experiments.push(audio_check_trial_2("/static/elise/sound/onion_w.mp3"))
+			} else {
+				experiments.push(audio_check_trial_2("/static/elise/sound/tooth_w.mp3"))
+			}
+			
+			//experiments.push(playNextInstruction())
 		}
 	}
 

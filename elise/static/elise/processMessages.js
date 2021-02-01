@@ -4,17 +4,24 @@
 var activecompmessage11;
 var activecompmessage1bcd;
 var activecompmessage2;
-var activecompmessage3;
+var activecompmessage;
 var activeprodmessage;
 var activeprodmessage1;
 var activeprodmessage2;
+var audiocheckmessage1;
+var audiocheckmessage2;
+var audiocheckmessage3;
+var audiocheckmessage;
 var endmessagec;
 var endmessagep;
 var forcedchoicemessage2pic;
 var forcedchoicemessage4pic;
+var FC4message;
 var grammaticalityjudgment;
+var grammaticalityjudgmentmessage;
 var openingmessagec;
 var openingmessagep;
+var overviewmessage;
 var passivemessage;
 var passivemessage1;
 var passivemessage2;
@@ -56,10 +63,10 @@ function processMessages() {
 	});
 	$.ajax({
 		type : "GET",
-		url : "/static/elise/Instructions/activecompmessage3.txt",
+		url : "/static/elise/Instructions/activecompmessage.txt",
 		dataType : "text",
 		success : function(data) {
-			activecompmessage3 = data;
+			activecompmessage = data;
 		}
 	});
 	$.ajax({
@@ -84,6 +91,38 @@ function processMessages() {
 		dataType : "text",
 		success : function(data) {
 			activeprodmessage2 = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/audiocheckmessage1.txt",
+		dataType : "text",
+		success : function(data) {
+			audiocheckmessage1 = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/audiocheckmessage2.txt",
+		dataType : "text",
+		success : function(data) {
+			audiocheckmessage2 = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/audiocheckmessage3.txt",
+		dataType : "text",
+		success : function(data) {
+			audiocheckmessage3 = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/audiocheckmessage.txt",
+		dataType : "text",
+		success : function(data) {
+			audiocheckmessage = data;
 		}
 	});
 	$.ajax({
@@ -120,10 +159,26 @@ function processMessages() {
 	});
 	$.ajax({
 		type : "GET",
+		url : "/static/elise/Instructions/FC4message.txt",
+		dataType : "text",
+		success : function(data) {
+			FC4message = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
 		url : "/static/elise/Instructions/grammaticalityjudgment.txt",
 		dataType : "text",
 		success : function(data) {
 			grammaticalityjudgment = data;
+		}
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/grammaticalityjudgmentmessage.txt",
+		dataType : "text",
+		success : function(data) {
+			grammaticalityjudgmentmessage = data;
 		}
 	});
 	$.ajax({
@@ -135,7 +190,6 @@ function processMessages() {
 			console.log(openingmessagec);
 		}
 	});
-	
 	$.ajax({
 		type : "GET",
 		url : "/static/elise/Instructions/openingmessagep.txt",
@@ -143,7 +197,16 @@ function processMessages() {
 		success : function(data) {
 			openingmessagep = data;
 		}
-	});$.ajax({
+	});
+	$.ajax({
+		type : "GET",
+		url : "/static/elise/Instructions/overviewmessage.txt",
+		dataType : "text",
+		success : function(data) {
+			overviewmessage = data;
+		}
+	});
+	$.ajax({
 		type : "GET",
 		url : "/static/elise/Instructions/passivemessage.txt",
 		dataType : "text",

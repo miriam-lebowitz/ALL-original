@@ -239,5 +239,6 @@ var durationDict = {"det1_big0p.wav":"2.116939",
 "det4_small10s.wav":"1.83254",
 "det4_small11p.wav":"1.826689",
 "det4_small11s.wav":"1.869728",
-"Pizza.mp3":"1.9"
+"Pizza.mp3":"1.9",
+"apple_w.mp3":"0.6"
 }

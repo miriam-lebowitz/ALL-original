@@ -24,7 +24,8 @@ function audio_check_trial_2(sound) {
 
 	// Timeline for active entry trial 
 	var audio_check_trial_2 = {
-		timeline: [{
+		timeline: [
+		{
 			// Displays fixation cross
 			type: 'html-keyboard-response',
 			stimulus: '+',
@@ -41,7 +42,7 @@ function audio_check_trial_2(sound) {
 			type: 'survey-html-form',
 			preamble: "",
 			// HTML form for user to enter info. "username" form serves only to prevent chrome from autocompleting
-			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the item? </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
+			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> Type the English word you hear. </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
 			// Blank screen before image is displayed again
@@ -50,16 +51,16 @@ function audio_check_trial_2(sound) {
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
 		}, 
-		 {
-				// Instruction page allows user to continue when ready 
-				type: 'instructions',
-				pages: ["Continue when ready"]
-				,
-				show_clickable_nav: true,
-				allow_backward:false
+		{	
+			// Instruction page allows user to continue when ready 
+			type: 'instructions',
+			pages: ["TAKE A BREAK IF YOU NEED TO (MAX 5 MINUTES)."]
+			,
+			show_clickable_nav: true,
+			allow_backward:false
 				
 
-			}
+		}
 			
 		]
 		,

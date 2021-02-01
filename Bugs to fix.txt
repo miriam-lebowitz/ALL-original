@@ -1,9 +1,7 @@
 
 BUGS:
+EH33:
 
-EH30: adjust audiochecktrials; replace 'what is the item' with 'type the English word you hear', replace 'continue' with 'next', change break screen to 'TAKE A BREAK IF YOU NEED TO, but no longer than 5 minutes. (With 'continue' instead of 'next')'
-EH31: include screens before sound check saying SOUND CHECK
-EH32: create screens for after sound check trials in the grammar judgment and 4AFC tests to remind people of what the test is about. 
 
 Next steps:
 NS1: put messages in actual timeline for both conditions
@@ -69,6 +67,9 @@ EH23: zimbaaf is not as loud as all other words
 FIXED
 EH24: One random mismatch trial per active comprehension block should be a plural error.
 FIXED
+EH30: adjust audiochecktrials; replace 'what is the item' with 'type the English word you hear', replace 'continue' with 'next', change break screen to 'TAKE A BREAK IF YOU NEED TO, but no longer than 5 minutes. (With 'continue' instead of 'next')'
+EH31: include screens before sound check saying SOUND CHECK
+EH32: create screens for after sound check trials in the grammar judgment and 4AFC tests to remind people of what the test is about. 
 
 Abandoned:
 EH7: right now I need to click on the textbox separately for each separate production trial. Is there an easy way to have the cursor start there automatically for each trial? This is way less important than the other stuff, more a convenience thing.
