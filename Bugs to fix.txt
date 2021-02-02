@@ -1,12 +1,10 @@
 
 BUGS:
-EH33:
 
+EH38: write script to get data in readable format
+EH39: prompts all show up as 'undefined' on server.... (Check first on computer)
 
 Next steps:
-NS1: put messages in actual timeline for both conditions
-NS2: implement audio check trials [explained] (straightforward)
-DONE - not yet implemented into full trial sequence
 NS3: forced choice 2 pics (medium)
 DONE - not yet implemented into full trial sequence
 NS4: forced choice 4 pics (medium+)
@@ -20,9 +18,7 @@ DONE - for active production and active comprehension and user info, the rest wi
 
 Maybe/Later:
 EH17: in active comp trial, I want feedback to show below picture, and without the picture moving to the side
-EH19: reserve the singular pics as being in the middle of an 800x400 slide to line them up nicer for 4AFC
-EH22: take underscore out of prompts
-EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward.
+EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward. NOTED: monok; zimbaaf; NOTED: stam; dap; chag; 
 EH26: Need whitespace to show up in the instructions
 EH27: read through all instructions and make sure they are all consistent, grammatical, etc; replace 'trial' with 'exercise', 'block' with 'group'.
 EH28: make 'next' / 'continue' consistent. Maybe continue if instructions, next if trial?
@@ -68,8 +64,29 @@ FIXED
 EH24: One random mismatch trial per active comprehension block should be a plural error.
 FIXED
 EH30: adjust audiochecktrials; replace 'what is the item' with 'type the English word you hear', replace 'continue' with 'next', change break screen to 'TAKE A BREAK IF YOU NEED TO, but no longer than 5 minutes. (With 'continue' instead of 'next')'
+FIXED
 EH31: include screens before sound check saying SOUND CHECK
+FIXED
 EH32: create screens for after sound check trials in the grammar judgment and 4AFC tests to remind people of what the test is about. 
+FIXED
+EH33: experiment only reads in the first 11 blocks
+FIXED
+EH34: experiment doesn't play soundchecktrials during training, modulo statement doesn't work
+FIXED
+EH36: read in subject number from url
+FIXED
+EH22: take underscore out of prompts
+FIXED
+EH19: recenter the singular pics as being in the middle of an 800x400 slide to line them up nicer for 4AFC
+FIXED
+NS1: put messages in actual timeline for both conditions
+DONE
+NS2: implement audio check trials [explained] (straightforward)
+DONE
+EH35: currently not logging data for audiochecktrials and passive trials
+FIXED
+EH37: send data back to server
+FIXED
 
 Abandoned:
 EH7: right now I need to click on the textbox separately for each separate production trial. Is there an easy way to have the cursor start there automatically for each trial? This is way less important than the other stuff, more a convenience thing.

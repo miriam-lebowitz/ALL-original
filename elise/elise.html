@@ -37,6 +37,7 @@
 	src="/static/common/jspsych-6.1.0/plugins/jspsych-call-function.js"></script>
 <script
 	src="/static/common/jspsych-6.1.0/plugins/jspsych-survey-html-form.js"></script>
+<script src="/static/common/js/lcnl-helpers.js"></script>
 	
 <link href="/static/common/jspsych-6.1.0/css/jspsych.css"
 	rel="stylesheet" type="text/css">
@@ -65,6 +66,7 @@ $(document).ready(function() {
 });
 	// URL param that sets whether this is a comprehension or production trial
 	var comp;
+	var cond;
 	// Subject number
 	var subjectnr;
 	// Stores trial number which will be continuously incremented throughout the experiment
@@ -80,13 +82,14 @@ $(document).ready(function() {
 		document.removeEventListener('click', arguments.callee);
 		jsPsych.init({
 			on_finish : function() {
-				console.log(total_data_array)
-				console.log(participant_data_array)
 				// Commented out server code to send data when ready
-				//sendJSONData(JSON.stringify(total_data_array), subjectnr)
-				//sendJSONData(JSON.stringify(participant_data_array), subjectnr)
+				sendJSONData(JSON.stringify(total_data_array), "s_" + subjectnr + "_setup");
+				sendJSONData(JSON.stringify(participant_data_array), "s_" + subjectnr + "_log");
+				//console.log(total_data_array)
+				//console.log(participant_data_array)
+				//console.log(subjectnr + "_setup")
 			},
-			timeline : 
+			timeline: 
 			makeExp()
 		})
 
