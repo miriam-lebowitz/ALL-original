@@ -14,11 +14,11 @@ function audioAfterTime(audio, time) {
 }
 
 // Runs an active comprehension trial 
-function active_comprehension_trial(image1, image2, correct, sound, prompt,plurality,alienidentifiernr) {
+function active_comprehension_trial(image1, image2, match, sound, prompt,plurality,alienidentifiernr) {
 	
 	// Determines the appropriate key to set for the correct value in the user interaction (76 is L, 65 is A)
 	var key;
-	if (correct) {
+	if (match) {
 		key = 76;
 	}
 	else {
@@ -50,7 +50,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 			stimulus: '+',
 			choices: jsPsych.NO_KEYS,
 			trial_duration: 500
-		}, {
+		} ,{
 			// Calls sound in 1 second so that it will play during the image display
 			type: 'call-function',
 			async: false,
@@ -69,6 +69,7 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 			show_stim_with_feedback: true,
 			feedback_duration: 1000
 		},
+
 		{
 			// Blank screen to implement pause
 			type: 'image-keyboard-response',
@@ -89,25 +90,26 @@ function active_comprehension_trial(image1, image2, correct, sound, prompt,plura
 			choices: jsPsych.NO_KEYS,
 			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
+		} 
+		, {
+		// Retrieves and separates relevant data from the appropriate timeline node
+		type: 'call-function',
+		async: false,
+		func: function() {
+			var current_node_id = jsPsych.currentTimelineNodeID();
+			// Navigates from the end of the timeline to the node associated with the categorize image trial
+			var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "2.0";
+			// Gets data from this node and prints it to the screen
+			// TODO: this will be changed to a server ajax call later in process
+			console.log(valid_node_id)
+			var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
+			console.log(data_from_current_node.csv())
+			var data_array = [subjectnr,cond,trialnr,"AC",alienidentifiernr,image2,image1,sound,neighborhood, String.fromCharCode(data_from_current_node.select('key_press').values[0]),data_from_current_node.select('correct').values[0], match,data_from_current_node.select('rt').values[0],plurality]
+			total_data_array.push(data_array)
+			console.log(data_array)
+			// Increments trial number to account for adding this trial to experiment
+			trialnr++;
 		}
-			, {
-			// Retrieves and separates relevant data from the appropriate timeline node
-			type: 'call-function',
-			async: false,
-			func: function() {
-				var current_node_id = jsPsych.currentTimelineNodeID();
-				// Navigates from the end of the timeline to the node associated with the categorize image trial
-				var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "2.0";
-				// Gets data from this node and prints it to the screen
-				// TODO: this will be changed to a server ajax call later in process
-				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
-				console.log(data_from_current_node.csv())
-
-				var data_array = [subjectnr,comp,trialnr,"AC",alienidentifiernr,image2,image1,sound, neighborhood, String.fromCharCode(data_from_current_node.select('key_press').values[0]),data_from_current_node.select('correct').values[0],data_from_current_node.select('rt').values[0],plurality]
-				total_data_array.push(data_array)
-				// Increments trial number to account for adding this trial to experiment
-				trialnr++;
-			}
 		}
 		],
 		timeline_variables: [{

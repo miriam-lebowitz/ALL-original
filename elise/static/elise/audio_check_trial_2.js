@@ -58,10 +58,29 @@ function audio_check_trial_2(sound) {
 			,
 			show_clickable_nav: true,
 			allow_backward:false
-				
+		}
+		, {
+		// Retrieves and separates relevant data from the appropriate timeline node
+		type: 'call-function',
+		async: false,
+		func: function() {
+			var current_node_id = jsPsych.currentTimelineNodeID();
+			// Navigates from the end of the timeline to the node associated with the categorize image trial
+			// the '2.0' indicates that the node with data is node number two within this entire trial
+			var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "2.0";
+			console.log(valid_node_id)
+			// Gets data from this node and prints it to the screen
+			// TODO: this will be changed to a server ajax call later in process
+			var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
+			console.log(data_from_current_node.csv());
+			var data_array = [subjectnr,cond,trialnr,"SC","-","-","-",sound, "-", JSON.parse(data_from_current_node.select('responses').values[0])["first"],"-", "-",data_from_current_node.select('rt').values[0],"-"]
+			total_data_array.push(data_array)
+			console.log(data_array)
+			// Increments trial number to account for adding this trial to experiment
+			trialnr++;
 
 		}
-			
+		}
 		]
 		,
 		timeline_variables: [{

@@ -51,7 +51,7 @@ function active_production_trial(image1, sound, prompt,plurality,alienidentifier
 			type: 'survey-html-form',
 			preamble: "<img src='" +image1 + "' style='display:block;margin-left: auto;margin-right: auto;'>",
 			// html form for user to enter info. The "username" form serves only to prevent chrome from autofilling the form 
-			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> What is the name of this alien? click continue after typing </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
+			html: '<input id="username" autocomplete = "off" style="display:none" type="text" name="fakeusernameremembered"><p style="display:block;margin-left: auto;margin-right: auto;"> Type the name! </p><input name="first" type="text" style="display:block;margin-left: auto;margin-right: auto;" required autocomplete="off";/>'
 		},
 		{
 			// Blank screen before image is displayed again
@@ -75,27 +75,28 @@ function active_production_trial(image1, sound, prompt,plurality,alienidentifier
 			// Retrieves sound duration from the dictionary and adds it to the trial duration 
 			trial_duration: 2000+1000*(parseFloat(durationDict[audioFileName]))
 		}
-			, {
-			// Retrieves and separates relevant data from the appropriate timeline node
-			type: 'call-function',
-			async: false,
-			func: function() {
-				var current_node_id = jsPsych.currentTimelineNodeID();
-				// Navigates from the end of the timeline to the node associated with the categorize image trial
-				var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "1.0";
-				// Gets data from this node and prints it to the screen
-				// TODO: this will be changed to a server ajax call later in process
-				var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
-				console.log(data_from_current_node.csv());
+		, {
+		// Retrieves and separates relevant data from the appropriate timeline node
+		type: 'call-function',
+		async: false,
+		func: function() {
+			var current_node_id = jsPsych.currentTimelineNodeID();
+			// Navigates from the end of the timeline to the node associated with the categorize image trial
+			var valid_node_id = current_node_id.substring(0, current_node_id.length - 3) + "1.0";
+			// Gets data from this node and prints it to the screen
+			console.log(valid_node_id)
+			// TODO: this will be changed to a server ajax call later in process
+			var data_from_current_node = jsPsych.data.getDataByTimelineNode(valid_node_id);
+			console.log(data_from_current_node.csv());
 
 
-				var data_array = [subjectnr,comp,trialnr,"AP",alienidentifiernr,image1,image1,sound, neighborhood, JSON.parse(data_from_current_node.select('responses').values[0])["first"],"N/A",data_from_current_node.select('rt').values[0],plurality]
-				total_data_array.push(data_array)
-				console.log(data_array)
-				// Increments trial number to account for adding this trial to experiment
-				trialnr++;
+			var data_array = [subjectnr,cond,trialnr,"AP",alienidentifiernr,image1,"-",sound, neighborhood, JSON.parse(data_from_current_node.select('responses').values[0])["first"],"-", "-",data_from_current_node.select('rt').values[0],plurality]
+			total_data_array.push(data_array)
+			console.log(data_array)
+			// Increments trial number to account for adding this trial to experiment
+			trialnr++;
 
-			}
+		}
 		}
 		],
 		timeline_variables: [{
