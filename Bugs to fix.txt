@@ -2,7 +2,7 @@
 BUGS:
 
 EH38: write script to get data in readable format
-EH39: prompts all show up as 'undefined' on server.... (Check first on computer)
+EH41:
 
 Next steps:
 NS3: forced choice 2 pics (medium)
@@ -86,6 +86,10 @@ DONE
 EH35: currently not logging data for audiochecktrials and passive trials
 FIXED
 EH37: send data back to server
+FIXED
+EH39: prompts all show up as 'undefined' on server.... [both conditions, it works on the first block of passive trials, stops after that. Same problem when tested on localhost] 
+FIXED
+EH40: comprehension condition prompts show up out of whack & prod instead of comp
 FIXED
 
 Abandoned:

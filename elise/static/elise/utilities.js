@@ -270,11 +270,11 @@ function makeExp() {
 		}
 	}
 	compMessageSequence = [openingmessagec, overviewmessage, audiocheckmessage1, audiocheckmessage2, audiocheckmessage, audiocheckmessage3, passivemessage1
-		, passivemessage, passivemessage2, activecompmessage1bcd, activecompmessage11, activecompmessage, activecompmessage2,
-		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
-		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
-		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
-		, passivemessage, activeprodmessage, passivemessage, activeprodmessage, passivemessage, activeprodmessage, audiocheckmessage
+		, passivemessage, passivemessage2, activecompmessage1bcd, activecompmessage11, activecompmessage, activecompmessage2
+		, passivemessage, activecompmessage, passivemessage, activecompmessage, audiocheckmessage
+		, passivemessage, activecompmessage, passivemessage, activecompmessage, passivemessage, activecompmessage, audiocheckmessage
+		, passivemessage, activecompmessage, passivemessage, activecompmessage, passivemessage, activecompmessage, audiocheckmessage
+		, passivemessage, activecompmessage, passivemessage, activecompmessage, passivemessage, activecompmessage, audiocheckmessage
 		, forcedchoicemessage2pic, audiocheckmessage
 		, forcedchoicemessage4pic, audiocheckmessage, FC4message, audiocheckmessage, FC4message
 		, audiocheckmessage, FC4message, audiocheckmessage
@@ -414,9 +414,10 @@ function makeExp() {
 	if (comp) {
 		experiments.push(active_comprehension_trial("/static/elise/img/images/pear.png", "/static/elise/img/images/apple.png", false, "/static/elise/sound/apple_w.mp3", "apple", false, "-"))
 		experiments.push(active_comprehension_trial("/static/elise/img/images/apple.png", "/static/elise/img/images/apple.png", true, "/static/elise/sound/apple_w.mp3", "apple", false, "-"))
-	} else {
-		experiments.push(active_production_trial("/static/elise/img/images/apple.png", "/static/elise/sound/apple_w.mp3", "apple", false, "-"))
-	}
+	} // if practice trial for production  is desired:
+	//else {
+		//experiments.push(active_production_trial("/static/elise/img/images/apple.png", "/static/elise/sound/apple_w.mp3", "apple", false, "-"))
+	//}
 	experiments.push(playNextInstruction())
 	experiments.push(playNextInstruction())
 
@@ -509,8 +510,7 @@ function makeExp() {
 				"/static/elise/img/images/" + secondImage,
 				correct,
 				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-				getPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
-
+				getPrompt(allSounds[monsterIndex][singOrPlural]),isPlural,monsterIndex));
 
 		}
 	}
@@ -526,7 +526,7 @@ function makeExp() {
 			}
 
 			experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt(allSounds[monsterIndex][singOrPlural]),isPlural,monsterIndex));
 		}
 	}
 	experiments.push(playNextInstruction())
@@ -567,7 +567,7 @@ function makeExp() {
 			// Calls functions to obtain trial objects and pushes them to the timeline
 			// this part of the experiment contains passive comprehension trials
 			experiments.push(passive_comprehension_trial("/static/elise/img/images/" + allImages[monsterIndex],
-				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt[allSounds[monsterIndex][singOrPlural]],isPlural, monsterIndex));
+				"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt(allSounds[monsterIndex][singOrPlural]),isPlural, monsterIndex));
 		}
 
 
@@ -657,7 +657,7 @@ function makeExp() {
 					"/static/elise/img/images/" + secondImage,
 					correct,
 					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural],
-					getPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
+					getPrompt(allSounds[monsterIndex][singOrPlural]),isPlural,monsterIndex));
 			}
 
 		}
@@ -674,7 +674,7 @@ function makeExp() {
 				}
 
 				experiments.push(active_production_trial("/static/elise/img/images/" + allImages[monsterIndex],
-					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt[allSounds[monsterIndex][singOrPlural]],isPlural,monsterIndex));
+					"/static/elise/sound/combinedsounds/" + allSounds[monsterIndex][singOrPlural], getPrompt(allSounds[monsterIndex][singOrPlural]),isPlural,monsterIndex));
 			}
 		}
 
