@@ -192,7 +192,7 @@ function playNextInstruction() {
 		else {
 			instruction = {
 				type: 'instructions',
-				pages: [compMessageSequence[currentInstructionCounter]]
+				pages: ["<div style='white-space: pre-wrap;'>" + compMessageSequence[currentInstructionCounter] + "</div>"]
 				,
 				show_clickable_nav: true,
 				allow_backward:false
@@ -211,7 +211,7 @@ function playNextInstruction() {
 		else {
 			instruction = {
 				type: 'instructions',
-				pages: [prodMessageSequence[currentInstructionCounter]]
+				pages: ["<div style='white-space: pre-wrap;'>" + prodMessageSequence[currentInstructionCounter] + "</div>"]
 				,
 				show_clickable_nav: true,
 				allow_backward:false

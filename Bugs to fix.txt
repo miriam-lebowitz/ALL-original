@@ -1,7 +1,7 @@
 
 BUGS:
 
-EH38: write script to get data in readable format
+
 EH41:
 
 Next steps:
@@ -13,13 +13,12 @@ NS5: grammaticality judgment (medium++)
 DONE - not yet implemented into full trial sequence
 LR6: production test (straightforward)
 LR7: logging (straightforward but a lot)
-DONE - for active production and active comprehension and user info, the rest will follow a very similar process
-
+DONE - for passive, active c+p, soundchecktrials; rest will be similar
 
 Maybe/Later:
 EH17: in active comp trial, I want feedback to show below picture, and without the picture moving to the side
 EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward. NOTED: monok; zimbaaf; NOTED: stam; dap; chag; 
-EH26: Need whitespace to show up in the instructions
+
 EH27: read through all instructions and make sure they are all consistent, grammatical, etc; replace 'trial' with 'exercise', 'block' with 'group'.
 EH28: make 'next' / 'continue' consistent. Maybe continue if instructions, next if trial?
 EH29: re-introduce the green square around passive + feedback phase of active trials? If so, put back in relevant instructions too. 
@@ -90,6 +89,10 @@ FIXED
 EH39: prompts all show up as 'undefined' on server.... [both conditions, it works on the first block of passive trials, stops after that. Same problem when tested on localhost] 
 FIXED
 EH40: comprehension condition prompts show up out of whack & prod instead of comp
+FIXED
+EH26: Need whitespace to show up in the instructions
+FIXED
+EH38: write script to get data in readable format
 FIXED
 
 Abandoned:
