@@ -83,14 +83,21 @@ $(document).ready(function() {
 		jsPsych.init({
 			on_finish : function() {
 				// Commented out server code to send data when ready
-				sendJSONData(JSON.stringify(total_data_array), "s_" + subjectnr + "_setup");
-				sendJSONData(JSON.stringify(participant_data_array), "s_" + subjectnr + "_log");
+				sendJSONData(JSON.stringify(total_data_array), "s_" + subjectnr + "_log");
+				sendJSONData(JSON.stringify(participant_data_array), "s_" + subjectnr + "_setup");
 				//console.log(total_data_array)
 				//console.log(participant_data_array)
 				//console.log(subjectnr + "_setup")
 			},
 			timeline: 
-			makeExp()
+			//makeExp()
+			[forced_choice_trial_2("/static/elise/img/images/h1.png", "/static/elise/img/images/h2.png", true, "/static/elise/sound/combinedsounds/det1_big0s.wav", false, 0),
+			forced_choice_trial_2("/static/elise/img/images/h1p.png", "/static/elise/img/images/h2p.png", true, "/static/elise/sound/combinedsounds/det1_big0p.wav", true, 0),
+			forced_choice_trial_2("/static/elise/img/images/h1.png", "/static/elise/img/images/h2.png", false, "/static/elise/sound/combinedsounds/det1_big1s.wav", false, 0),
+			forced_choice_trial_2("/static/elise/img/images/h2p.png", "/static/elise/img/images/h1p.png", true, "/static/elise/sound/combinedsounds/det1_big1p.wav", true, 0),
+			forced_choice_trial_2("/static/elise/img/images/h1.png", "/static/elise/img/images/h1p.png", true, "/static/elise/sound/combinedsounds/det1_big0s.wav", false, 0),
+			forced_choice_trial_2("/static/elise/img/images/h1.png", "/static/elise/img/images/h1p.png", false, "/static/elise/sound/combinedsounds/det1_big0p.wav", true, 0)
+			]
 		})
 
 	});

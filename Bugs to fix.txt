@@ -2,7 +2,7 @@
 BUGS:
 
 
-EH41:
+EH43:
 
 Next steps:
 NS3: forced choice 2 pics (medium)
@@ -18,10 +18,12 @@ DONE - for passive, active c+p, soundchecktrials; rest will be similar
 Maybe/Later:
 EH17: in active comp trial, I want feedback to show below picture, and without the picture moving to the side
 EH25: double check all audio to see if pronunciation of stems match; note down stems where I find pronunciation weird or where audio volume is awkward. NOTED: monok; zimbaaf; NOTED: stam; dap; chag; 
-
 EH27: read through all instructions and make sure they are all consistent, grammatical, etc; replace 'trial' with 'exercise', 'block' with 'group'.
 EH28: make 'next' / 'continue' consistent. Maybe continue if instructions, next if trial?
 EH29: re-introduce the green square around passive + feedback phase of active trials? If so, put back in relevant instructions too. 
+EH41:active prod trial needs to log correct prompt for easy grading
+
+
 
 Done: 
 EH1: pics disappear before audio is done, check timings
@@ -93,6 +95,8 @@ FIXED
 EH26: Need whitespace to show up in the instructions
 FIXED
 EH38: write script to get data in readable format
+FIXED
+EH42: it always logs 'l' for the key that's the correct answer in 2AFC (so right before RT)
 FIXED
 
 Abandoned:
